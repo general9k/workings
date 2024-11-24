@@ -7,8 +7,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 
 @SpringBootApplication
-@EnableJpaRepositories(basePackages = {"ru.rodionov.abitur.repository"})
-@EntityScan(basePackages = {"ru.rodionov.abitur.model"})
+@EnableJpaRepositories(basePackages = {"ru.ksanxxx.abitur.repository"})
+@EntityScan(basePackages = {"ru.ksanxxx.abitur.model"})
 public class AbiturApplication {
 
     public static void main(String[] args) {
