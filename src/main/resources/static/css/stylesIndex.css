@@ -1,0 +1,133 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background: #f4f4f4;
+}
+
+/* Навигация */
+nav {
+    background: #454545;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: block;
+}
+
+nav ul li a:hover {
+    background: #0078D7;
+}
+
+/* Шапка */
+header {
+    background: linear-gradient(135deg, #005dd7, #ff8800); /* Градиент от синего к оранжевому */
+    color: #fff;
+    padding: 2rem 0;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Добавлена тень для контраста */
+}
+
+header .container h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header .container p {
+    margin: 0.5rem 0 0;
+    font-size: 1.2rem;
+}
+
+/* Основная часть */
+main {
+    padding: 2rem;
+}
+
+.info {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.info h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.info p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+/* Шаги поступления */
+.steps {
+    margin-top: 2rem; /* Уменьшен общий отступ сверху */
+    text-align: center;
+}
+
+.steps h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem; /* Уменьшен отступ заголовка */
+}
+
+.step {
+    background: #fff;
+    padding: 1.5rem; /* Уменьшен padding внутри блока */
+    border-radius: 15px; /* Скругление углов */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Мягкая тень */
+    margin-bottom: 1rem; /* Уменьшен отступ между блоками */
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.step:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.step h3 {
+    font-size: 1.6rem; /* Немного уменьшен размер заголовка */
+    color: #0078D7;
+    margin-bottom: 0.5rem; /* Уменьшен отступ под заголовком */
+    font-weight: bold;
+}
+
+.step p {
+    font-size: 1rem;
+    margin: 0.5rem 0 0;
+    color: #555;
+    line-height: 1.5;
+}
+
+/* Подвал */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}

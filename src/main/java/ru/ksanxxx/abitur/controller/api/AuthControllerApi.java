@@ -25,6 +25,7 @@ public interface AuthControllerApi {
     String registration(CreateClientRequest createClientRequest);
 
     @RequestMapping(
+            value = "/index",
             method = RequestMethod.GET
     )
     String redirectToStartPage();
