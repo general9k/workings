@@ -6,17 +6,17 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.ModelAndView;
+import ru.ksanxxx.abitur.controller.api.UserControllerApi;
 import ru.ksanxxx.abitur.model.request.CreateClientRequest;
-import ru.ksanxxx.abitur.controller.api.AuthControllerApi;
-import ru.ksanxxx.abitur.service.AuthService;
+import ru.ksanxxx.abitur.service.facade.UserFacade;
 
 
 @Slf4j
 @Controller
 @RequiredArgsConstructor
-public class AuthController implements AuthControllerApi {
+public class UserController implements UserControllerApi {
 
-    private final AuthService authService;
+    private final UserFacade facade;
 
     @Override
     public ModelAndView getLogin() {
@@ -31,7 +31,7 @@ public class AuthController implements AuthControllerApi {
     @Override
     @Transactional
     public String registration(CreateClientRequest createClientRequest) {
-        authService.save(createClientRequest);
+        facade.saveUser(createClientRequest);
         return "redirect:/login";
     }
 
