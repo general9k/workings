@@ -42,10 +42,8 @@ public class UserController implements UserControllerApi {
 
     @Override
     public String startPage(Model model) {
-        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        boolean isAuthenticated = authentication != null && authentication.isAuthenticated()
-                                  && !(authentication.getPrincipal() instanceof String);
-        model.addAttribute("isAuthenticated", isAuthenticated);
+        model.addAttribute("isAuthenticated", facade.isAuthenticated());
+        model.addAttribute("isAdmin", facade.isAdmin());
         return "api/v1/index";
     }
 }

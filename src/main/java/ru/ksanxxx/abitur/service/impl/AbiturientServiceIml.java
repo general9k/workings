@@ -16,6 +16,7 @@ public class AbiturientServiceIml implements AbiturientService {
 
     private final AbiturientRepository abiturientRepository;
 
+
     @Override
     public List<Abiturient> getAllAbiturients() {
         return abiturientRepository.findAll();
