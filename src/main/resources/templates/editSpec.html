@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование специальности</title>
+    <link rel="stylesheet" href="css/stylesEditSpec.css">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="#" th:href="@{/lists}">Списки</a></li>
+        <li><a href="#" th:href="@{/applicants}">Абитуриенты</a></li>
+        <li><a href="#" th:href="@{/specialties}">Специальности</a></li>
+        <li><a href="#" th:href="@{/institutions}">Учебные заведения</a></li>
+        <li><a href="#" th:href="@{/users}">Пользователи</a></li>
+        <li><a href="#" th:href="@{/login}">Войти</a></li>
+    </ul>
+</nav>
+<main>
+    <section class="edit-specialty-section">
+        <h1>Редактирование специальности</h1>
+        <form action="#" th:action="@{/specialties/save}" method="post" class="edit-specialty-form">
+            <input type="hidden" name="id" th:value="${specialty.id}">
+
+            <div class="form-group">
+                <label for="name">Название специальности:</label>
+                <input type="text" id="name" name="name" th:value="${specialty.name}" required>
+            </div>
+
+            <div class="form-group">
+                <label for="subjects">Необходимые предметы:</label>
+                <select id="subjects" name="subjects" multiple size="5" required>
+                    <option th:each="subject : ${allSubjects}"
+                            th:value="${subject.id}"
+                            th:text="${subject.name}"
+                            th:selected="${specialty.subjects.contains(subject)}"></option>
+                </select>
+                <small>Зажмите CTRL (Windows) или CMD (Mac), чтобы выбрать несколько предметов</small>
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="save-btn">Сохранить</button>
+                <button type="button" class="cancel-btn" th:onclick="'location.href=\'/specialties\''">Отмена</button>
+            </div>
+        </form>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2024 Приемная комиссия. Все права защищены.</p>
+</footer>
+</body>
+</html>

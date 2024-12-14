@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конкурсные списки</title>
+    <link rel="stylesheet" href="css/stylesLists.css">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="#" th:href="@{/lists}">Списки</a></li>
+        <li><a href="#" th:href="@{/applicants}">Абитуриенты</a></li>
+        <li><a href="#" th:href="@{/specialties}">Специальности</a></li>
+        <li><a href="#" th:href="@{/institutions}">Учебные заведения</a></li>
+        <li><a href="#" th:href="@{/users}">Пользователи</a></li>
+        <li><a href="#" th:href="@{/login}">Войти</a></li>
+    </ul>
+</nav>
+<main>
+    <section class="list-section">
+        <h1>Конкурсные списки</h1>
+        <table class="contestant-table">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Фамилия</th>
+                <th>Направление</th>
+                <th>Индивидуальные достижения</th>
+                <th>Категория</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Thymeleaf: Цикл по списку абитуриентов -->
+            <tr th:each="contestant : ${contestants}">
+                <td th:text="${contestant.id}"></td>
+                <td th:text="${contestant.lastName}"></td>
+                <td th:text="${contestant.direction}"></td>
+                <td th:text="${contestant.achievements ? 'Да' : 'Нет'}"></td>
+                <td th:text="${contestant.category}"></td>
+            </tr>
+            <!-- Если список пустой -->
+            <tr th:if="${#lists.isEmpty(contestants)}">
+                <td colspan="5">Данные отсутствуют</td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2024 Приемная комиссия. Все права защищены.</p>
+</footer>
+</body>
+</html>

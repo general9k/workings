@@ -1,0 +1,116 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background: #f4f4f4;
+}
+
+/* Навигация */
+nav {
+    background: #454545;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: block;
+}
+
+nav ul li a:hover {
+    background: #0078D7;
+}
+
+/* Основная часть */
+main {
+    padding: 2rem;
+}
+
+.applicants-filter h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #0078D7;
+}
+
+/* Фильтры */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.filters select, .filters button {
+    padding: 0.8rem;
+    font-size: 1rem;
+}
+
+.print-btn {
+    background: #0078D7;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 1rem 2rem;
+    font-size: 1rem;
+}
+
+.print-btn:hover {
+    background: #005bb5;
+}
+
+/* Таблица */
+.applicants-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.applicants-table th, .applicants-table td {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.applicants-table th {
+    background-color: #f4f4f4;
+}
+
+.actions button {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    margin: 0.2rem;
+}
+
+.actions button:hover {
+    background-color: #0078D7;
+    color: #fff;
+}
+
+/* Подвал */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}

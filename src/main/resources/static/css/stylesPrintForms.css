@@ -1,0 +1,107 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background: #f4f4f4;
+}
+
+nav {
+    background: #454545;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: block;
+}
+
+nav ul li a:hover {
+    background: #0078D7;
+}
+
+/* Основная часть */
+main {
+    padding: 2rem;
+}
+
+.print-forms-container h1 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: #0078D7;
+}
+
+/* Фильтры */
+.filters {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.filters select {
+    padding: 0.8rem;
+    font-size: 1rem;
+}
+
+.filters button {
+    padding: 0.8rem 1.6rem;
+    font-size: 1rem;
+    background-color: #0078D7;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.filters button:hover {
+    background-color: #005bb5;
+}
+
+/* Таблица */
+.print-forms-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 1rem;
+}
+
+.print-forms-table th, .print-forms-table td {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+.print-forms-table th {
+    background-color: #f4f4f4;
+}
+
+.print-forms-table input[type="checkbox"] {
+    cursor: not-allowed;
+}
+
+/* Подвал */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+}

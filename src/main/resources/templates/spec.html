@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Список специальностей</title>
+    <link rel="stylesheet" href="css/stylesSpec.css">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="#" th:href="@{/lists}">Списки</a></li>
+        <li><a href="#" th:href="@{/applicants}">Абитуриенты</a></li>
+        <li><a href="#" th:href="@{/specialties}">Специальности</a></li>
+        <li><a href="#" th:href="@{/institutions}">Учебные заведения</a></li>
+        <li><a href="#" th:href="@{/users}">Пользователи</a></li>
+        <li><a href="#" th:href="@{/login}">Войти</a></li>
+    </ul>
+</nav>
+<main>
+    <section class="specialties-section">
+        <h1>Список специальностей</h1>
+        <table class="specialty-table">
+            <thead>
+            <tr>
+                <th>Название специальности</th>
+                <th>Необходимые предметы</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- Thymeleaf: Цикл по специальностям -->
+            <tr th:each="specialty : ${specialties}">
+                <td th:text="${specialty.name}"></td>
+                <td>
+                    <ul>
+                        <li th:each="subject : ${specialty.subjects}" th:text="${subject.name}"></li>
+                    </ul>
+                </td>
+                <td>
+                    <button class="edit-btn" th:onclick="'location.href=\'/specialties/edit/' + ${specialty.id} + '\''">Редактировать</button>
+                    <button class="delete-btn" th:onclick="'location.href=\'/specialties/delete/' + ${specialty.id} + '\''">Удалить</button>
+                </td>
+            </tr>
+            <!-- Если список пуст -->
+            <tr th:if="${#lists.isEmpty(specialties)}">
+                <td colspan="3">Данные отсутствуют</td>
+            </tr>
+            </tbody>
+        </table>
+        <!-- Кнопка для создания новой специальности -->
+        <div class="new-specialty">
+            <button class="create-btn" th:if="${isAdmin}" th:onclick="'location.href=\'/specialties/create\''">Создать новую специальность</button>
+        </div>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2024 Приемная комиссия. Все права защищены.</p>
+</footer>
+</body>
+</html>

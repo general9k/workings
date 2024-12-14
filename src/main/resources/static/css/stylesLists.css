@@ -1,0 +1,113 @@
+/* Общие стили */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background: #f4f4f4;
+}
+
+/* Навигация */
+nav {
+    background: #454545;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul li {
+    margin: 0;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: block;
+}
+
+nav ul li a:hover {
+    background: #0078D7;
+}
+
+/* Основная часть */
+main {
+    padding: 2rem;
+    background: #fff;
+    margin: 2rem auto;
+    max-width: 1200px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Заголовок секции */
+.list-section h1 {
+    text-align: center;
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #0078D7;
+}
+
+/* Таблица */
+.contestant-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0 auto;
+    font-size: 1rem;
+    text-align: left;
+}
+
+.contestant-table th,
+.contestant-table td {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+}
+
+.contestant-table th {
+    background: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.contestant-table tr:nth-child(even) {
+    background: #f9f9f9;
+}
+
+.contestant-table tr:hover {
+    background: #f1f1f1;
+}
+
+.contestant-table td {
+    text-align: center;
+    color: #555;
+}
+
+/* Сообщение об отсутствии данных */
+.contestant-table td[colspan="5"] {
+    font-style: italic;
+    color: #999;
+    text-align: center;
+}
+
+/* Подвал */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: 2rem;
+    border-radius: 0 0 10px 10px;
+}

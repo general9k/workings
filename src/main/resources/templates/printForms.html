@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Печатные формы</title>
+    <link rel="stylesheet" href="css/stylesPrintForms.css">
+    <script>
+        function printPage() {
+            window.print();
+        }
+    </script>
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/">Главная</a></li>
+        <li><a href="#" th:href="@{/lists}">Списки</a></li>
+        <li><a href="#" th:href="@{/applicants}">Абитуриенты</a></li>
+        <li><a href="#" th:href="@{/specialties}">Специальности</a></li>
+        <li><a href="#" th:href="@{/institutions}">Учебные заведения</a></li>
+        <li><a href="#" th:href="@{/users}">Пользователи</a></li>
+        <li><a href="#" th:href="@{/login}">Войти</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section class="print-forms-container">
+        <h1>Печатные формы абитуриентов</h1>
+
+        <div class="filters">
+            <label for="category">Фильтр по категории:</label>
+            <select id="category" name="category" th:field="*{category}">
+                <option value="">Все</option>
+                <option value="льгота">Льгота</option>
+                <option value="бюджет">Бюджет</option>
+                <option value="коммерция">Коммерция</option>
+            </select>
+
+            <button onclick="printPage()">Печать</button>
+        </div>
+
+        <table class="print-forms-table">
+            <thead>
+            <tr>
+                <th>id</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Дата рождения</th>
+                <th>Учебное заведение</th>
+                <th>Дата окончания учебного заведения</th>
+                <th>Адрес</th>
+                <th>Специальность</th>
+                <th>Индивидуальные достижения</th>
+                <th>Категория</th>
+                <th>Телефон</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="applicant : ${applicants}">
+                <td th:text="${applicant.id}"></td>
+                <td th:text="${applicant.lastName}"></td>
+                <td th:text="${applicant.firstName}"></td>
+                <td th:text="${applicant.middleName}"></td>
+                <td th:text="${#dates.format(applicant.birthDate, 'yyyy-MM-dd')}"></td>
+                <td th:text="${applicant.institution.name}"></td>
+                <td th:text="${#dates.format(applicant.graduationDate, 'yyyy-MM-dd')}"></td>
+                <td th:text="${applicant.address.city}"></td>
+                <td th:text="${applicant.specialty.name}"></td>
+                <td>
+                    <input type="checkbox" th:checked="${applicant.individualAchievements}" disabled>
+                </td>
+                <td th:text="${applicant.category}"></td>
+                <td th:text="${applicant.phone}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Приемная комиссия. Все права защищены.</p>
+</footer>
+
+</body>
+</html>
