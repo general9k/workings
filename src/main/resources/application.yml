@@ -23,6 +23,7 @@ spring:
     suffix: .html
     mode: HTML
 
+
 logging:
   level:
     org:

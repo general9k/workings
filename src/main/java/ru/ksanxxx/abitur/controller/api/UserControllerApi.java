@@ -1,9 +1,10 @@
 package ru.ksanxxx.abitur.controller.api;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.bind.annotation.RequestParam;
 import ru.ksanxxx.abitur.model.request.CreateClientRequest;
 
 @Controller
@@ -11,12 +12,12 @@ public interface UserControllerApi {
     @RequestMapping(
             value = "/login",
             method = RequestMethod.GET)
-    ModelAndView getLogin();
+    String getLogin(@RequestParam(required = false) Boolean error);
 
     @RequestMapping(
             value = "/registration",
             method = RequestMethod.GET)
-    ModelAndView getRegistration();
+    String getRegistration();
 
     @RequestMapping(
             value = "/registration",
@@ -25,8 +26,8 @@ public interface UserControllerApi {
     String registration(CreateClientRequest createClientRequest);
 
     @RequestMapping(
-            value = "/index",
+            value = "/api/v1/index",
             method = RequestMethod.GET
     )
-    String redirectToStartPage();
+    String startPage(Model model);
 }

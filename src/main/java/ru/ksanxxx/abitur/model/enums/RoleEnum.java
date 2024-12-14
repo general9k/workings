@@ -7,8 +7,8 @@ import ru.ksanxxx.abitur.util.RoleConverter;
 
 @Convert(converter = RoleConverter.class)
 public enum RoleEnum {
-    OPERATOR("operator"), // Оператор
-    ADMIN("admin"); // Администратор системы
+    OPERATOR("OPERATOR"), // Оператор
+    ADMIN("ADMIN"); // Администратор системы
 
     RoleEnum(String code) {
         this.code = code;

@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Приемная комиссия</title>
-    <link rel="stylesheet" href="css/stylesIndex.css">
+    <link rel="stylesheet" href="/css/stylesIndex.css">
 </head>
 <body>
 <nav>
     <ul>
-        <li><a href="#">Главная</a></li>
+        <li><a href="/api/v1/index">Главная</a></li>
         <li><a href="#">Cписки</a></li>
         <li><a href="#">Абитуриенты</a></li>
         <li><a href="#">Специальности</a></li>
         <li><a href="#">Учебные заведения</a></li>
         <li><a href="#">Пользователи</a></li>
-        <li><a href="#">Войти</a></li>
+        <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
+        <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
     </ul>
 </nav>
 <header>

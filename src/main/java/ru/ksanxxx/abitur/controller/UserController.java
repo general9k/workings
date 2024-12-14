@@ -3,9 +3,11 @@ package ru.ksanxxx.abitur.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.servlet.ModelAndView;
+import org.springframework.ui.Model;
 import ru.ksanxxx.abitur.controller.api.UserControllerApi;
 import ru.ksanxxx.abitur.model.request.CreateClientRequest;
 import ru.ksanxxx.abitur.service.facade.UserFacade;
@@ -19,13 +21,16 @@ public class UserController implements UserControllerApi {
     private final UserFacade facade;
 
     @Override
-    public ModelAndView getLogin() {
-        return new ModelAndView("login");
+    public String getLogin(Boolean error) {
+        if (Boolean.TRUE.equals(error)) {
+            return "errors/error";
+        }
+        return "login";
     }
 
     @Override
-    public ModelAndView getRegistration() {
-        return new ModelAndView("registration");
+    public String getRegistration() {
+        return "registration";
     }
 
     @Override
@@ -36,8 +41,11 @@ public class UserController implements UserControllerApi {
     }
 
     @Override
-    public String redirectToStartPage() {
-        return "redirect:/api/v1/index";
+    public String startPage(Model model) {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        boolean isAuthenticated = authentication != null && authentication.isAuthenticated()
+                                  && !(authentication.getPrincipal() instanceof String);
+        model.addAttribute("isAuthenticated", isAuthenticated);
+        return "api/v1/index";
     }
-
 }

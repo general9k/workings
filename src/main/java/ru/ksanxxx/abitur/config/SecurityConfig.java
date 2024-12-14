@@ -28,17 +28,19 @@ public class SecurityConfig {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http
                 .csrf(AbstractHttpConfigurer::disable)
-                .authorizeHttpRequests(auth ->
-                        auth
-                                .requestMatchers("/api/v1/**").authenticated()
-                                .requestMatchers(
-                                        "/",
-                                        "/registration",
-                                        "/login",
-                                        "/error")
-                                .permitAll()
-                                .requestMatchers("/css/**", "/images/**")
-                                .permitAll())
+                .formLogin(form ->
+                        form
+                                .loginPage("/login").permitAll()
+                                .loginProcessingUrl("/login")
+                                .failureUrl("/login?error=true").permitAll()
+                                .defaultSuccessUrl("/api/v1/index", true))
+
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers(
+                                "/css/**", "/js/**", "/images/**",
+                                "/", "/api/v1/index", "/api/v1/index/**",
+                                "/registration", "/login", "/login/error", "/error").permitAll()
+                        .requestMatchers("/api/v1/**").authenticated())
                 .build();
     }
 
