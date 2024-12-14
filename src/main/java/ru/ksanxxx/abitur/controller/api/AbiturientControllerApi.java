@@ -28,6 +28,17 @@ public interface AbiturientControllerApi {
     String getAbiturient(@PathVariable Integer id, Model model);
 
     @RequestMapping(
+            value = "abiturients/create",
+            method = RequestMethod.GET
+    )
+    String createAbiturient(Model model);
+
+    @RequestMapping(
+            value = "abiturients/create",
+            method = RequestMethod.POST)
+    String createAbiturient(Model model, Abiturient abiturient);
+
+    @RequestMapping(
             value = "abiturients",
             method = RequestMethod.POST)
     String createAbiturient(@RequestBody Abiturient abiturient);

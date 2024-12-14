@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Создание Абитуриента</title>
-    <link rel="stylesheet" href="css/stylesCreateAbiturient.css">
+    <link rel="stylesheet" href="/css/stylesCreateAbiturient.css">
 </head>
 <body>
 <nav>
     <ul>
-        <li><a href="/">Главная</a></li>
-        <li><a href="#" th:href="@{/applicants}">Абитуриенты</a></li>
-        <li><a href="#" th:href="@{/specialties}">Специальности</a></li>
-        <li><a href="#" th:href="@{/institutions}">Учебные заведения</a></li>
-        <li><a href="#" th:href="@{/users}">Пользователи</a></li>
-        <li><a href="#" th:href="@{/templates/errors}">Войти</a></li>
+        <li><a href="/api/v1/index">Главная</a></li>
+        <li><a href="/api/v1/lists">Списки</a></li>
+        <li th:if="${isAuthenticated}"><a href="/api/v1/abiturients">Абитуриенты</a></li>
+        <li><a href="/api/v1/spec">Специальности</a></li>
+        <li th:if="${isAdmin}"><a href="/api/v1/education">Учебные заведения</a></li>
+        <li th:if="${isAdmin}"><a href="/api/v1/users">Пользователи</a></li>
+        <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
+        <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
     </ul>
 </nav>
 
@@ -22,72 +24,75 @@
     <section class="form-container">
         <h1>Создание нового абитуриента</h1>
 
-        <form th:action="@{/applicants/create}" th:object="${abiturient}" method="post">
+        <form action="/api/v1/abiturients/create" method="post">
             <!-- Фамилия -->
             <div class="form-group">
                 <label for="lastName">Фамилия:</label>
-                <input type="text" id="lastName" th:field="*{lastName}" placeholder="Введите фамилию" required>
+                <input type="text" id="lastName" name="lastName" placeholder="Введите фамилию" required>
             </div>
 
             <!-- Имя -->
             <div class="form-group">
                 <label for="firstName">Имя:</label>
-                <input type="text" id="firstName" th:field="*{firstName}" placeholder="Введите имя" required>
+                <input type="text" id="firstName" name="firstName" placeholder="Введите имя" required>
             </div>
 
             <!-- Отчество -->
             <div class="form-group">
                 <label for="middleName">Отчество:</label>
-                <input type="text" id="middleName" th:field="*{middleName}" placeholder="Введите отчество" required>
+                <input type="text" id="middleName" name="middleName" placeholder="Введите отчество" required>
             </div>
 
             <!-- Дата рождения -->
             <div class="form-group">
                 <label for="birthDate">Дата рождения:</label>
-                <input type="date" id="birthDate" th:field="*{birthDate}" required>
+                <input type="date" id="birthDate" name="birthDate" required>
             </div>
 
             <!-- Учебное заведение -->
             <div class="form-group">
                 <label for="institution">Учебное заведение:</label>
-                <select id="institution" th:field="*{institution}" required>
-                    <option value="" disabled>Выберите учебное заведение</option>
-                    <option th:each="institution : ${institutions}" th:value="${institution.id}" th:text="${institution.name}"></option>
+                <select id="institution" name="institution" required>
+                    <option value="" disabled selected>Выберите учебное заведение</option>
+                    <option value="1">Школа №1</option>
+                    <option value="2">Школа №2</option>
+                    <option value="3">Школа №3</option>
                 </select>
             </div>
 
             <!-- Дата окончания учебного заведения -->
             <div class="form-group">
                 <label for="graduationDate">Дата окончания учебного заведения:</label>
-                <input type="date" id="graduationDate" th:field="*{graduationDate}" required>
+                <input type="date" id="graduationDate" name="graduationDate" required>
             </div>
 
             <!-- Адрес -->
             <div class="form-group">
-                <label for="address">Адрес</label>
-                <input type="text" id="index" th:field="*{address}" placeholder="Введите индекс" required>
+                <label for="address">Адрес:</label>
+                <input type="text" id="address" name="address" placeholder="Введите адрес" required>
             </div>
-
 
             <!-- Специальность -->
             <div class="form-group">
                 <label for="specialty">Специальность:</label>
-                <select id="specialty" th:field="*{specialty}" required>
-                    <option value="" disabled>Выберите специальность</option>
-                    <option th:each="specialty : ${specialties}" th:value="${specialty.id}" th:text="${specialty.name}"></option>
+                <select id="specialty" name="specialty" required>
+                    <option value="" disabled selected>Выберите специальность</option>
+                    <option value="1">Информатика</option>
+                    <option value="2">Математика</option>
+                    <option value="3">Физика</option>
                 </select>
             </div>
 
             <!-- Индивидуальные достижения -->
             <div class="form-group">
                 <label for="individualAchievements">Индивидуальные достижения:</label>
-                <input type="checkbox" id="individualAchievements" th:field="*{individualAchievements}" />
+                <input type="checkbox" id="individualAchievements" name="individualAchievements">
             </div>
 
             <!-- Категория -->
             <div class="form-group">
                 <label for="category">Категория:</label>
-                <select id="category" th:field="*{category}" required>
+                <select id="category" name="category" required>
                     <option value="Льгота">Льгота</option>
                     <option value="Бюджет">Бюджет</option>
                     <option value="Коммерция">Коммерция</option>
@@ -97,7 +102,7 @@
             <!-- Телефон -->
             <div class="form-group">
                 <label for="phone">Телефон:</label>
-                <input type="tel" id="phone" th:field="*{phone}" placeholder="Введите телефон" required>
+                <input type="tel" id="phone" name="phone" placeholder="Введите телефон" required>
             </div>
 
             <!-- Кнопка сохранения -->
@@ -107,6 +112,7 @@
         </form>
     </section>
 </main>
+
 
 <footer>
     <p>&copy; 2024 Приемная комиссия. Все права защищены.</p>

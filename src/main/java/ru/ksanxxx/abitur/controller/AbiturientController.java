@@ -22,13 +22,27 @@ public class AbiturientController implements AbiturientControllerApi {
     @Override
     public String getAbiturients(Model model, String categoryName, String[] achievements, String sort, String direction) {
         List<Abiturient> abiturients = abiturientFacade.getAbiturients(categoryName, achievements, sort, direction);
+
         model.addAttribute("abiturients", abiturients);
         model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
         model.addAttribute("isAdmin", userFacade.isAdmin());
+        model.addAttribute("isOperator", userFacade.isOperator());
         model.addAttribute("currentCategory", categoryName);
         model.addAttribute("currentSort", sort);
         model.addAttribute("currentDirection", direction);
         return "api/v1/abiturients";
+    }
+
+    @Override // GET
+    public String createAbiturient(Model model) {
+        model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
+        model.addAttribute("isAdmin", userFacade.isAdmin());
+        return "/api/v1/abiturients/create";
+    }
+
+    @Override // POST
+    public String createAbiturient(Model model, Abiturient abiturient) {
+        return "redirect:/api/v1/abiturients";
     }
 
     @Override

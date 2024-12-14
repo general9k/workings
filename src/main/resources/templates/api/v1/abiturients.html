@@ -93,8 +93,9 @@
         </table>
 
         <div class="actions">
-            <button th:if="${isOperator}"
-                    th:href="@{/applicants/create}">Создать абитуриента</button>
+            <a th:if="${isOperator || isAdmin}"
+               th:href="@{/api/v1/abiturients/create}"
+               class="btn">Создать абитуриента</a>
         </div>
     </section>
 </main>
