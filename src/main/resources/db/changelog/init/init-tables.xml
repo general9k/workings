@@ -12,8 +12,150 @@
             <column name="username" type="varchar(50)">
                 <constraints nullable="false" unique="true"/>
             </column>
-            <column name="password" type="varchar">
+            <column name="password" type="varchar(20)">
                 <constraints nullable="false"/>
+            </column>
+            <column name="last_name" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="first_name" type="varchar(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="patronymic" type="varchar(30)"/>
+            <column name="role" type="varchar">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2024-11-21-add_table_education" author="ksanxxx">
+        <createSequence sequenceName="education_seq" startValue="1" incrementBy="1"/>
+        <createTable tableName="education">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="education_pkey"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="city" type="varchar(50)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2024-11-21-add_table_individual_achievements" author="ksanxxx">
+        <createSequence sequenceName="individual_achievements_seq" startValue="1" incrementBy="1"/>
+        <createTable tableName="individual_achievements">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="individual_achievements_pkey"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2024-11-21-add_table_categories" author="ksanxxx">
+        <createSequence sequenceName="categories_seq" startValue="1" incrementBy="1"/>
+        <createTable tableName="categories">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="categories_pkey"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2024-11-21-add_table_subjects" author="ksanxxx">
+        <createSequence sequenceName="subjects_seq" startValue="1" incrementBy="1"/>
+        <createTable tableName="subjects">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="subjects_pkey"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2024-11-21-add_table_specialties" author="ksanxxx">
+        <createSequence sequenceName="specialties_seq" startValue="1" incrementBy="1"/>
+        <createTable tableName="specialties">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="specialties_pkey"/>
+            </column>
+            <column name="name" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2024-11-21-add_table_specialties_subjects" author="ksanxxx">
+        <createTable tableName="specialties_subjects">
+            <column name="specialty_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+            <column name="subject_id" type="int">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+
+        <!-- Внешний ключ для specialty_id -->
+        <addForeignKeyConstraint
+                constraintName="fk_specialty_id"
+                baseTableName="specialties_subjects"
+                baseColumnNames="specialty_id"
+                referencedTableName="specialties"
+                referencedColumnNames="id"/>
+
+        <!-- Внешний ключ для subject_id -->
+        <addForeignKeyConstraint
+                constraintName="fk_subject_id"
+                baseTableName="specialties_subjects"
+                baseColumnNames="subject_id"
+                referencedTableName="subjects"
+                referencedColumnNames="id"/>
+
+        <!-- Составной первичный ключ для сочетания specialty_id и subject_id -->
+        <addPrimaryKey
+                constraintName="specialties_subjects_pkey"
+                tableName="specialties_subjects"
+                columnNames="specialty_id, subject_id"/>
+    </changeSet>
+
+    <changeSet id="2024-11-21-add_table_addresses" author="ksanxxx">
+        <createSequence sequenceName="addresses_seq" startValue="1" incrementBy="1"/>
+        <createTable tableName="addresses">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="addresses_pkey"/>
+            </column>
+            <column name="index" type="integer">
+                <constraints nullable="false"/>
+            </column>
+            <column name="territory" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="locality" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="street" type="varchar(100)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="number" type="integer">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2024-11-21-add_table_abiturient" author="ksanxxx">
+        <createSequence sequenceName="abiturient_seq" startValue="1" incrementBy="1"/>
+        <createTable tableName="abiturient">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="abiturient_pkey"/>
             </column>
             <column name="last_name" type="varchar(50)">
                 <constraints nullable="false"/>
@@ -22,8 +164,62 @@
                 <constraints nullable="false"/>
             </column>
             <column name="patronymic" type="varchar(50)"/>
-            <column name="role" type="varchar">
+            <column name="date_of_birth" type="datetime">
                 <constraints nullable="false"/>
+            </column>
+            <column name="date_of_end" type="datetime"/>
+            <column name="phone_number" type="varchar(11)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="education" type="integer">
+                <constraints nullable="false"
+                             foreignKeyName="fk_abiturient_education"
+                             referencedTableName="education"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="address" type="integer">
+                <constraints nullable="false"
+                             foreignKeyName="fk_abiturient_address"
+                             referencedTableName="addresses"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="achievement" type="integer">
+                <constraints foreignKeyName="fk_abiturient_individual_achievement"
+                             referencedTableName="individual_achievements"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="speciality" type="integer">
+                <constraints nullable="false"
+                             foreignKeyName="fk_abiturient_speciality"
+                             referencedTableName="specialties"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="category" type="integer">
+                <constraints nullable="false"
+                             foreignKeyName="fk_abiturient_category"
+                             referencedTableName="categories"
+                             referencedColumnNames="id"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="2024-11-21-add_table_forms" author="ksanxxx">
+        <createSequence sequenceName="forms_seq" startValue="1" incrementBy="1"/>
+        <createTable tableName="forms">
+            <column name="id" type="serial">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="forms_pkey"/>
+            </column>
+            <column name="abiturient" type="integer">
+                <constraints nullable="false"
+                             foreignKeyName="fk_forms_abiturient"
+                             referencedTableName="abiturient"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="employee" type="integer">
+                <constraints nullable="false"
+                             foreignKeyName="fk_forms_auth_user"
+                             referencedTableName="auth_user"
+                             referencedColumnNames="id"/>
             </column>
         </createTable>
     </changeSet>

@@ -9,8 +9,7 @@ import ru.ksanxxx.abitur.model.Abiturient;
 import ru.ksanxxx.abitur.model.request.CreateClientRequest;
 import ru.ksanxxx.abitur.service.AbiturientService;
 import ru.ksanxxx.abitur.service.AuthService;
-import ru.ksanxxx.abitur.service.impl.CsvFileGenerationService;
-import ru.ksanxxx.abitur.service.impl.XmlFileGenerationService;
+
 
 import java.util.List;
 
@@ -21,8 +20,6 @@ public class UserFacade {
 
     private final AuthService authService;
     private final AbiturientService abiturientService;
-    private final CsvFileGenerationService<Abiturient> csvFileGenerationService;
-    private final XmlFileGenerationService<Abiturient> xmlFileGenerationService;
 
     @Transactional(readOnly = true)
     public List<Abiturient> getAbiturients() {
@@ -48,15 +45,5 @@ public class UserFacade {
     public void deleteAbiturient(Integer id) {
         Abiturient abiturient = abiturientService.getAbiturientById(id);
         abiturientService.delete(abiturient);
-    }
-
-    @Transactional(readOnly = true)
-    public void generateCsvFileAbiturients() {
-        csvFileGenerationService.generateFile(abiturientService.getAllAbiturients(), "output.csv");
-    }
-
-    @Transactional(readOnly = true)
-    public void generateXmlFileAbiturients() {
-        xmlFileGenerationService.generateFile(abiturientService.getAllAbiturients(), "output.csv");
     }
 }

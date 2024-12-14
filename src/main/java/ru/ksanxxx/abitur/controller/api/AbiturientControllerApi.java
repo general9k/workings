@@ -30,14 +30,4 @@ public interface AbiturientControllerApi {
             value = "/api/v1/abiturients/{id}",
             method = RequestMethod.DELETE)
     String deleteAbiturient(@PathVariable Integer id);
-
-    @RequestMapping(
-            value = "/api/v1/abiturients/xml",
-            method = RequestMethod.GET)
-    void createXML();
-
-    @RequestMapping(
-            value = "/api/v1/abiturients/csv",
-            method = RequestMethod.GET)
-    void createCSV();
 }

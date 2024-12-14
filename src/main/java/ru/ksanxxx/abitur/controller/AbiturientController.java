@@ -15,6 +15,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class AbiturientController implements AbiturientControllerApi {
     private final UserFacade facade;
+
     @Override
     public String getAbiturients(Model model) {
         List<Abiturient> abiturients = facade.getAbiturients();
@@ -39,15 +40,5 @@ public class AbiturientController implements AbiturientControllerApi {
     public String deleteAbiturient(Integer id) {
         facade.deleteAbiturient(id);
         return "redirect:/abiturients";
-    }
-
-    @Override
-    public void createXML() {
-        facade.generateXmlFileAbiturients();
-    }
-
-    @Override
-    public void createCSV() {
-        facade.generateCsvFileAbiturients();
     }
 }
