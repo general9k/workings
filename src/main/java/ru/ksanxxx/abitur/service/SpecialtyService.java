@@ -9,4 +9,8 @@ public interface SpecialtyService {
     List<Specialty> getAllSpecialties();
 
     Specialty getById(Integer id);
+
+    Specialty save(Specialty specialty);
+
+    void delete(Integer id);
 }

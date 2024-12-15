@@ -29,4 +29,14 @@ public class SpecialtyServiceImpl implements SpecialtyService {
         return specialtyRepository.findById(id)
                 .orElseThrow(() -> new ServerLogicException("Специальность с данным id не найдена", ServerLogicExceptionType.NOT_FOUND));
     }
+
+    @Override
+    public Specialty save(Specialty specialty) {
+        return specialtyRepository.save(specialty);
+    }
+
+    @Override
+    public void delete(Integer id) {
+        specialtyRepository.deleteById(id);
+    }
 }

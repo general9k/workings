@@ -40,8 +40,14 @@
                     </ul>
                 </td>
                 <td>
-                    <button class="edit-btn" th:onclick="'location.href=\'/specialties/edit/' + ${specialty.id} + '\''">Редактировать</button>
-                    <button class="delete-btn" th:onclick="'location.href=\'/specialties/delete/' + ${specialty.id} + '\''">Удалить</button>
+                    <button class="edit-btn" th:onclick="'location.href=\'/specialties/edit/' + ${specialty.id} + '\''">
+                        Редактировать
+                    </button>
+                    <form th:if="${isAdmin}" th:action="@{/api/v1/specialities}" method="post" style="display:inline;">
+                        <input type="hidden" name="id" th:value="${specialty.id}"/>
+                        <input type="hidden" name="_method" value="DELETE"/>
+                        <button type="submit" onclick="return confirm('Вы уверены?')">Удалить</button>
+                    </form>
                 </td>
             </tr>
             <!-- Если список пуст -->
@@ -52,7 +58,8 @@
         </table>
         <!-- Кнопка для создания новой специальности -->
         <div class="new-specialty">
-            <a class="create-btn" th:if="${isAdmin}" th:href="@{/api/v1/specialities/create}">Создать новую специальность</a>
+            <a class="create-btn" th:if="${isAdmin}" th:href="@{/api/v1/specialities/create}">Создать новую
+                специальность</a>
         </div>
     </section>
 </main>

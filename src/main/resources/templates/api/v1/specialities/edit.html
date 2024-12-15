@@ -9,13 +9,14 @@
 <body>
 <nav>
     <ul>
-        <li><a href="/">Главная</a></li>
-        <li><a href="#" th:href="@{/lists}">Списки</a></li>
-        <li><a href="#" th:href="@{/applicants}">Абитуриенты</a></li>
-        <li><a href="#" th:href="@{/specialties}">Специальности</a></li>
-        <li><a href="#" th:href="@{/institutions}">Учебные заведения</a></li>
-        <li><a href="#" th:href="@{/users}">Пользователи</a></li>
-        <li><a href="#" th:href="@{/templates/errors}">Войти</a></li>
+        <li><a href="/api/v1/index">Главная</a></li>
+        <li><a href="/api/v1/lists">Списки</a></li>
+        <li th:if="${isAuthenticated}"><a href="/api/v1/abiturients">Абитуриенты</a></li>
+        <li><a href="/api/v1/specialities">Специальности</a></li>
+        <li th:if="${isAdmin}"><a href="/api/v1/education">Учебные заведения</a></li>
+        <li th:if="${isAdmin}"><a href="/api/v1/users">Пользователи</a></li>
+        <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
+        <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
     </ul>
 </nav>
 <main>
