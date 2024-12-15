@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="2024-11-21-insert_education" author="ksanxxx">
+        <insert tableName="education">
+            <column name="city">Ярославль</column>
+            <column name="name">Школа</column>
+            <column name="number">41</column>
+        </insert>
+
+        <insert tableName="education">
+            <column name="city">Ярославль</column>
+            <column name="name">Школа</column>
+            <column name="number">49</column>
+        </insert>
+
+        <insert tableName="education">
+            <column name="city">Ярославль</column>
+            <column name="name">Школа</column>
+            <column name="number">1</column>
+        </insert>
+
+        <insert tableName="education">
+            <column name="city">Семибратово</column>
+            <column name="name">Семибратовская школа</column>
+            <column name="number">1</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="2024-11-21-insert_categories" author="ksanxxx">
+        <insert tableName="categories">
+            <column name="name">Льгота</column>
+        </insert>
+        <insert tableName="categories">
+            <column name="name">Бюджет</column>
+        </insert>
+        <insert tableName="categories">
+            <column name="name">Коммерция</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

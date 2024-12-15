@@ -39,37 +39,57 @@
 
             <!-- Отчество -->
             <div class="form-group">
-                <label for="middleName">Отчество:</label>
-                <input type="text" id="middleName" name="middleName" placeholder="Введите отчество" required>
+                <label for="patronymic">Отчество:</label>
+                <input type="text" id="patronymic" name="patronymic" placeholder="Введите отчество">
             </div>
 
             <!-- Дата рождения -->
             <div class="form-group">
-                <label for="birthDate">Дата рождения:</label>
-                <input type="date" id="birthDate" name="birthDate" required>
+                <label for="dateOfBirth">Дата рождения:</label>
+                <input type="date" id="dateOfBirth" name="dateOfBirth" required>
             </div>
 
             <!-- Учебное заведение -->
             <div class="form-group">
-                <label for="institution">Учебное заведение:</label>
-                <select id="institution" name="institution" required>
+                <label for="education">Учебное заведение:</label>
+                <select id="education" name="education" required>
                     <option value="" disabled selected>Выберите учебное заведение</option>
-                    <option value="1">Школа №1</option>
-                    <option value="2">Школа №2</option>
-                    <option value="3">Школа №3</option>
+                    <option th:each="education : ${educations}"
+                            th:value="${education.id}"
+                            th:text="${education.city + ',' + education.name + ',' + education.number}"></option>
                 </select>
             </div>
 
             <!-- Дата окончания учебного заведения -->
             <div class="form-group">
-                <label for="graduationDate">Дата окончания учебного заведения:</label>
-                <input type="date" id="graduationDate" name="graduationDate" required>
+                <label for="dateOfEnd">Дата окончания учебного заведения:</label>
+                <input type="date" id="dateOfEnd" name="dateOfEnd" required>
             </div>
 
             <!-- Адрес -->
             <div class="form-group">
-                <label for="address">Адрес:</label>
-                <input type="text" id="address" name="address" placeholder="Введите адрес" required>
+                <label for="address-index">Индекс:</label>
+                <input type="text" id="address-index" name="address.index" placeholder="Введите индекс" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address-territory">Регион:</label>
+                <input type="text" id="address-territory" name="address.territory" placeholder="Введите регион" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address-locality">Населенный пункт:</label>
+                <input type="text" id="address-locality" name="address.locality" placeholder="Введите населенный пункт" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address-street">Улица:</label>
+                <input type="text" id="address-street" name="address.street" placeholder="Введите улицу" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address-number">Номер дома:</label>
+                <input type="text" id="address-number" name="address.number" placeholder="Введите номер дома" required>
             </div>
 
             <!-- Специальность -->
@@ -77,32 +97,38 @@
                 <label for="specialty">Специальность:</label>
                 <select id="specialty" name="specialty" required>
                     <option value="" disabled selected>Выберите специальность</option>
-                    <option value="1">Информатика</option>
-                    <option value="2">Математика</option>
-                    <option value="3">Физика</option>
+                    <option th:each="specialty : ${specialties}"
+                            th:value="${specialty.id}"
+                            th:text="${specialty.name}"></option>
                 </select>
             </div>
 
             <!-- Индивидуальные достижения -->
             <div class="form-group">
-                <label for="individualAchievements">Индивидуальные достижения:</label>
-                <input type="checkbox" id="individualAchievements" name="individualAchievements">
+                <label for="achievement">Индивидуальное достижение:</label>
+                <select id="achievement" name="achievement" required>
+                    <option value="" disabled selected>Выберите индивидуальное достижение</option>
+                    <option th:each="achievement : ${achievements}"
+                            th:value="${achievement.id}"
+                            th:text="${achievement.name}"></option>
+                </select>
             </div>
 
             <!-- Категория -->
             <div class="form-group">
                 <label for="category">Категория:</label>
                 <select id="category" name="category" required>
-                    <option value="Льгота">Льгота</option>
-                    <option value="Бюджет">Бюджет</option>
-                    <option value="Коммерция">Коммерция</option>
+                    <option value="" disabled selected>Выберите категорию</option>
+                    <option th:each="category : ${categories}"
+                            th:value="${category.id}"
+                            th:text="${category.name}"></option>
                 </select>
             </div>
 
             <!-- Телефон -->
             <div class="form-group">
-                <label for="phone">Телефон:</label>
-                <input type="tel" id="phone" name="phone" placeholder="Введите телефон" required>
+                <label for="phoneNumber">Телефон:</label>
+                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="Введите телефон" required>
             </div>
 
             <!-- Кнопка сохранения -->

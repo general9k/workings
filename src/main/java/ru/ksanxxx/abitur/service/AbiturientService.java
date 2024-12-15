@@ -10,7 +10,7 @@ public interface AbiturientService {
 
     Abiturient getAbiturientById(Integer id);
 
-    void save(Abiturient abiturient);
+    Abiturient save(Abiturient abiturient);
 
     void delete(Abiturient id);
 }

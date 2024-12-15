@@ -16,7 +16,7 @@ public class AbiturientFacade {
 
     private final AbiturientService abiturientService;
 
-    public List<Abiturient> getAbiturients(String categoryName, String[] achievements, String sort, String direction) {
+    public List<Abiturient> getAbiturients(String categoryName, String[] achievements, String sort) {
 
         List<Abiturient> result = abiturientService.getAllAbiturients();
 
@@ -34,21 +34,22 @@ public class AbiturientFacade {
                                     abiturient.getAchievement().getName().equalsIgnoreCase(achievement))).toList();
         }
 
-        // Динамическая сортировка
         if (sort != null) {
             result = result.stream()
-                    .sorted((o1, o2) -> {
-                        return switch (sort) {
-                            case "lastName" -> o1.getLastName().compareToIgnoreCase(o2.getLastName());
-                            case "firstName" -> o1.getFirstName().compareToIgnoreCase(o2.getFirstName());
-                            case "birthDate" -> o1.getDateOfBirth().compareTo(o2.getDateOfBirth());
-                            default -> 0;
-                        };
+                    .sorted((o1, o2) -> switch (sort) {
+                        case "lastName" -> o1.getLastName().compareToIgnoreCase(o2.getLastName());
+                        case "firstName" -> o1.getFirstName().compareToIgnoreCase(o2.getFirstName());
+                        case "birthDate" -> o1.getDateOfBirth().compareTo(o2.getDateOfBirth());
+                        default -> 0;
                     })
                     .toList();
         }
 
         return result;
+    }
+
+    public Abiturient saveAbiturient(Abiturient abiturient) {
+        return abiturientService.save(abiturient);
     }
 
 }

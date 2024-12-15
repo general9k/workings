@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import ru.ksanxxx.abitur.model.Abiturient;
+import ru.ksanxxx.abitur.model.request.CreateAbiturientRequest;
 
 @Controller
 @RequestMapping("/api/v1")
@@ -19,8 +20,7 @@ public interface AbiturientControllerApi {
     String getAbiturients(Model model,
                           @RequestParam(required = false) String categoryName,
                           @RequestParam(required = false) String[] achievements,
-                          @RequestParam(required = false) String sort,
-                          @RequestParam(required = false) String direction);
+                          @RequestParam(required = false) String sort);
 
     @RequestMapping(
             value = "abiturients/{id}",
@@ -36,7 +36,7 @@ public interface AbiturientControllerApi {
     @RequestMapping(
             value = "abiturients/create",
             method = RequestMethod.POST)
-    String createAbiturient(Model model, Abiturient abiturient);
+    String createAbiturient(Model model, CreateAbiturientRequest request);
 
     @RequestMapping(
             value = "abiturients",
