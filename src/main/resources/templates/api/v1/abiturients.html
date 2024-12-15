@@ -12,7 +12,7 @@
         <li><a href="/api/v1/index">Главная</a></li>
         <li><a href="/api/v1/lists">Списки</a></li>
         <li th:if="${isAuthenticated}"><a href="/api/v1/abiturients">Абитуриенты</a></li>
-        <li><a href="/api/v1/spec">Специальности</a></li>
+        <li><a href="/api/v1/specialities">Специальности</a></li>
         <li th:if="${isAdmin}"><a href="/api/v1/education">Учебные заведения</a></li>
         <li th:if="${isAdmin}"><a href="/api/v1/users">Пользователи</a></li>
         <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
@@ -68,7 +68,7 @@
                 <th>Индивидуальные достижения</th>
                 <th>Категория</th>
                 <th>Телефон</th>
-                <!--                <th>Действия</th>-->
+                <th>Действия</th>
             </tr>
             </thead>
             <tbody>
@@ -85,21 +85,17 @@
                 <td th:text="${abiturient.achievement.name}"></td>
                 <td th:text="${abiturient.category.name}"></td>
                 <td th:text="${abiturient.phoneNumber}"></td>
-                <!--                <td th:text="${applicant.specialty.name}"></td>-->
-                <!--                <td>-->
-                <!--                    <input type="checkbox" th:checked="${applicant.individualAchievements}" disabled>-->
-                <!--                </td>-->
-                <!--                <td th:text="${applicant.category}"></td>-->
-                <!--                <td th:text="${applicant.phone}"></td>-->
-                <!--                <td>-->
-                <!--                    <div class="actions">-->
-                <!--                        <button th:if="${#authorization.hasAnyRole('ROLE_EDITOR', 'ROLE_ADMIN')}"-->
-                <!--                                th:href="@{/applicants/{id}/edit(id=${applicant.id})}">Редактировать</button>-->
-                <!--                        <button th:if="${#authorization.hasRole('ROLE_ADMIN')}"-->
-                <!--                                th:href="@{/applicants/{id}/delete(id=${applicant.id})}"-->
-                <!--                                onclick="return confirm('Вы уверены?')">Удалить</button>-->
-                <!--                    </div>-->
-                <!--                </td>-->
+                <td>
+                    <div class="actions">
+                        <button th:if="${isOperator || isAdmin}"
+                                th:href="@{/abiturient/{id}/edit(id=${abiturient.id})}">Редактировать
+                        </button>
+                        <button th:if="${isAdmin}"
+                                th:href="@{/abiturient/{id}/delete(id=${abiturient.id})}"
+                                onclick="return confirm('Вы уверены?')">Удалить
+                        </button>
+                    </div>
+                </td>
             </tr>
             </tbody>
         </table>
