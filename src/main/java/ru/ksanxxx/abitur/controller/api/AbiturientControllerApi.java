@@ -19,7 +19,7 @@ public interface AbiturientControllerApi {
             method = RequestMethod.GET)
     String getAbiturients(Model model,
                           @RequestParam(required = false) String categoryName,
-                          @RequestParam(required = false) String[] achievements,
+                          @RequestParam(required = false) Boolean isAchievement,
                           @RequestParam(required = false) String sort);
 
     @RequestMapping(

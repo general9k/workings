@@ -6,7 +6,6 @@ import org.springframework.stereotype.Service;
 import ru.ksanxxx.abitur.model.Abiturient;
 import ru.ksanxxx.abitur.service.AbiturientService;
 
-import java.util.Arrays;
 import java.util.List;
 
 @Service
@@ -16,7 +15,7 @@ public class AbiturientFacade {
 
     private final AbiturientService abiturientService;
 
-    public List<Abiturient> getAbiturients(String categoryName, String[] achievements, String sort) {
+    public List<Abiturient> getAbiturients(String categoryName, Boolean isAchievement, String sort) {
 
         List<Abiturient> result = abiturientService.getAllAbiturients();
 
@@ -26,12 +25,16 @@ public class AbiturientFacade {
                     .toList();
         }
 
-        if (achievements != null && achievements.length > 0) {
-            List<String> achievementsList = Arrays.asList(achievements);
-            result = result.stream()
-                    .filter(abiturient -> achievementsList.stream()
-                            .anyMatch(achievement ->
-                                    abiturient.getAchievement().getName().equalsIgnoreCase(achievement))).toList();
+        if (isAchievement != null) {
+            if (isAchievement) {
+                result = result.stream()
+                        .filter(abiturient -> abiturient.getAchievement() != null)
+                        .toList();
+            } else {
+                result = result.stream()
+                        .filter(abiturient -> abiturient.getAchievement() == null)
+                        .toList();
+            }
         }
 
         if (sort != null) {

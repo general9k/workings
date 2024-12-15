@@ -106,7 +106,7 @@
             <!-- Индивидуальные достижения -->
             <div class="form-group">
                 <label for="achievement">Индивидуальное достижение:</label>
-                <select id="achievement" name="achievement" required>
+                <select id="achievement" name="achievement">
                     <option value="" disabled selected>Выберите индивидуальное достижение</option>
                     <option th:each="achievement : ${achievements}"
                             th:value="${achievement.id}"

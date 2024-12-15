@@ -36,6 +36,13 @@
                             th:selected="${currentCategory == category.name}"></option>
                 </select>
 
+                <label for="category">Фильтр по наличию индивидуальных достижений:</label>
+                <select id="isAchievement" name="isAchievement">
+                    <option value="" th:selected="${currentIsAchievement == null}">Все</option>
+                    <option value="true" th:selected="${currentIsAchievement == true}">Имеются</option>
+                    <option value="false" th:selected="${currentIsAchievement == false}">Не имеются</option>
+                </select>
+
                 <label for="sort">Упорядочить по:</label>
                 <select id="sort" name="sort">
                     <option value="lastName" th:selected="${currentSort == 'lastName'}">Фамилия</option>

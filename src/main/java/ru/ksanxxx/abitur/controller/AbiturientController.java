@@ -39,8 +39,8 @@ public class AbiturientController implements AbiturientControllerApi {
     private final AddressFacade addressFacade;
 
     @Override
-    public String getAbiturients(Model model, String categoryName, String[] achievements, String sort) {
-        List<Abiturient> abiturients = abiturientFacade.getAbiturients(categoryName, achievements, sort);
+    public String getAbiturients(Model model, String categoryName, Boolean isAchievement, String sort) {
+        List<Abiturient> abiturients = abiturientFacade.getAbiturients(categoryName, isAchievement, sort);
         List<Category> categories = categoryFacade.getAll();
 
         model.addAttribute("categories", categories);
@@ -50,6 +50,7 @@ public class AbiturientController implements AbiturientControllerApi {
         model.addAttribute("isOperator", userFacade.isOperator());
         model.addAttribute("currentCategory", categoryName);
         model.addAttribute("currentSort", sort);
+        model.addAttribute("currentIsAchievement", isAchievement);
         return "api/v1/abiturients";
     }
 
