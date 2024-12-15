@@ -6,7 +6,6 @@
 
     <include file="db/changelog/init/init-tables.xml"/>
     <include file="db/changelog/init/insert-educations.xml"/>
-    <include file="db/changelog/init/insert-spec.xml"/>
     <include file="/db/changelog/init/insert_achievements.xml"/>
     <include file="/db/changelog/init/insert_categories.xml"/>
     <include file="/db/changelog/init/insert-subjects.xml"/>
