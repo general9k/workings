@@ -20,7 +20,7 @@ public class AbiturientFacade {
 
         List<Abiturient> result = abiturientService.getAllAbiturients();
 
-        if (categoryName != null) {
+        if (categoryName != null && !categoryName.isEmpty()) {
             result = result.stream()
                     .filter(abiturient -> abiturient.getCategory().getName().equalsIgnoreCase(categoryName))
                     .toList();

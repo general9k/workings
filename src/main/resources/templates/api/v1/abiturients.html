@@ -26,19 +26,21 @@
 
         <div class="filters">
             <form method="get" th:action="@{/api/v1/abiturients}">
+
+                <label for="category">Фильтр по категории:</label>
+                <select id="category" name="categoryName">
+                    <option value="" th:selected="${currentCategory == ''}">Все</option>
+                    <option th:each="category : ${categories}"
+                            th:value="${category.name}"
+                            th:text="${category.name}"
+                            th:selected="${currentCategory == category.name}"></option>
+                </select>
+
                 <label for="sort">Упорядочить по:</label>
                 <select id="sort" name="sort">
                     <option value="lastName" th:selected="${currentSort == 'lastName'}">Фамилия</option>
                     <option value="firstName" th:selected="${currentSort == 'firstName'}">Имя</option>
                     <option value="birthDate" th:selected="${currentSort == 'birthDate'}">Дата рождения</option>
-                </select>
-
-                <label for="category">Фильтр по категории:</label>
-                <select id="category" name="categoryName">
-                    <option value="" th:selected="${currentCategory == ''}">Все</option>
-                    <option value="льгота" th:selected="${currentCategory == 'льгота'}">Льгота</option>
-                    <option value="бюджет" th:selected="${currentCategory == 'бюджет'}">Бюджет</option>
-                    <option value="коммерция" th:selected="${currentCategory == 'коммерция'}">Коммерция</option>
                 </select>
 
                 <button type="submit">Применить</button>

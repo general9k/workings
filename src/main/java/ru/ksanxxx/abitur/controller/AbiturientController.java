@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import ru.ksanxxx.abitur.controller.api.AbiturientControllerApi;
 import ru.ksanxxx.abitur.model.Abiturient;
+import ru.ksanxxx.abitur.model.Category;
 import ru.ksanxxx.abitur.model.request.CreateAbiturientRequest;
 import ru.ksanxxx.abitur.service.facade.AbiturientFacade;
 import ru.ksanxxx.abitur.service.facade.AchievementFacade;
@@ -40,7 +41,9 @@ public class AbiturientController implements AbiturientControllerApi {
     @Override
     public String getAbiturients(Model model, String categoryName, String[] achievements, String sort) {
         List<Abiturient> abiturients = abiturientFacade.getAbiturients(categoryName, achievements, sort);
+        List<Category> categories = categoryFacade.getAll();
 
+        model.addAttribute("categories", categories);
         model.addAttribute("abiturients", abiturients);
         model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
         model.addAttribute("isAdmin", userFacade.isAdmin());
