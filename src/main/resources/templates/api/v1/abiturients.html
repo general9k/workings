@@ -87,13 +87,14 @@
                 <td th:text="${abiturient.phoneNumber}"></td>
                 <td>
                     <div class="actions">
-                        <button th:if="${isOperator || isAdmin}"
-                                th:href="@{/abiturient/{id}/edit(id=${abiturient.id})}">Редактировать
-                        </button>
-                        <button th:if="${isAdmin}"
-                                th:href="@{/abiturient/{id}/delete(id=${abiturient.id})}"
-                                onclick="return confirm('Вы уверены?')">Удалить
-                        </button>
+                        <form th:if="${isEditor || isAdmin}" th:action="@{/api/v1/abiturients/{id}/edit(id=${abiturient.id})}" method="get" style="display:inline;">
+                            <button type="submit">Редактировать</button>
+                        </form>
+                        <form th:if="${isAdmin}" th:action="@{/api/v1/abiturients}" method="post" style="display:inline;">
+                            <input type="hidden" name="id" th:value="${abiturient.id}"/>
+                            <input type="hidden" name="_method" value="DELETE"/>
+                            <button type="submit" onclick="return confirm('Вы уверены?')">Удалить</button>
+                        </form>
                     </div>
                 </td>
             </tr>

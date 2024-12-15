@@ -3,11 +3,9 @@ package ru.ksanxxx.abitur.controller.api;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import ru.ksanxxx.abitur.model.Abiturient;
 import ru.ksanxxx.abitur.model.request.CreateAbiturientRequest;
 
 @Controller
@@ -23,11 +21,6 @@ public interface AbiturientControllerApi {
                           @RequestParam(required = false) String sort);
 
     @RequestMapping(
-            value = "abiturients/{id}",
-            method = RequestMethod.GET)
-    String getAbiturient(@PathVariable Integer id, Model model);
-
-    @RequestMapping(
             value = "abiturients/create",
             method = RequestMethod.GET
     )
@@ -39,12 +32,19 @@ public interface AbiturientControllerApi {
     String createAbiturient(Model model, CreateAbiturientRequest request);
 
     @RequestMapping(
-            value = "abiturients",
-            method = RequestMethod.POST)
-    String createAbiturient(@RequestBody Abiturient abiturient);
+            value = "abiturients/{id}/edit",
+            method = RequestMethod.GET
+    )
+    String editAbiturient(Model model, @PathVariable Integer id);
 
     @RequestMapping(
-            value = "abiturients/{id}",
+            value = "abiturients/{id}/edit",
+            method = RequestMethod.PUT
+    )
+    String editAbiturient(Model model, CreateAbiturientRequest request, @PathVariable Integer id);
+
+    @RequestMapping(
+            value = "abiturients",
             method = RequestMethod.DELETE)
-    String deleteAbiturient(@PathVariable Integer id);
+    String deleteAbiturient(@RequestParam Integer id);
 }

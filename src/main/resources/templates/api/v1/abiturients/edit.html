@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Редактирование Абитуриента</title>
+    <link rel="stylesheet" href="/css/stylesEditAbiturient.css">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/api/v1/index">Главная</a></li>
+        <li><a href="/api/v1/lists">Списки</a></li>
+        <li th:if="${isAuthenticated}"><a href="/api/v1/abiturients">Абитуриенты</a></li>
+        <li><a href="/api/v1/spec">Специальности</a></li>
+        <li th:if="${isAdmin}"><a href="/api/v1/education">Учебные заведения</a></li>
+        <li th:if="${isAdmin}"><a href="/api/v1/users">Пользователи</a></li>
+        <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
+        <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
+    </ul>
+</nav>
+
+<main>
+    <section class="form-container">
+        <h1>Редактирование абитуриента</h1>
+
+        <form th:action="@{/api/v1/abiturients/{id}/edit(id=${abiturient.id})}" method="post">
+
+            <input type="hidden" name="_method" value="PUT"/>
+
+            <!-- Фамилия -->
+            <div class="form-group">
+                <label for="lastName">Фамилия:</label>
+                <input type="text" id="lastName" name="lastName" th:value="${abiturient.lastName}"
+                       placeholder="Введите фамилию" required>
+            </div>
+
+            <!-- Имя -->
+            <div class="form-group">
+                <label for="firstName">Имя:</label>
+                <input type="text" id="firstName" name="firstName" th:value="${abiturient.firstName}"
+                       placeholder="Введите имя" required>
+            </div>
+
+            <!-- Отчество -->
+            <div class="form-group">
+                <label for="patronymic">Отчество:</label>
+                <input type="text" id="patronymic" name="patronymic" th:value="${abiturient.patronymic}"
+                       placeholder="Введите отчество">
+            </div>
+
+            <!-- Дата рождения -->
+            <div class="form-group">
+                <label for="dateOfBirth">Дата рождения:</label>
+                <input type="date" id="dateOfBirth"
+                       th:value="${@dateFormatterUtil.formatOffsetDateTime(abiturient.dateOfBirth, 'yyyy-MM-dd')}"
+                       name="dateOfBirth" required>
+            </div>
+
+            <!-- Учебное заведение -->
+            <div class="form-group">
+                <label for="education">Учебное заведение:</label>
+                <select id="education" name="education" required>
+                    <option value="" disabled selected>Выберите учебное заведение</option>
+                    <option th:each="education : ${educations}"
+                            th:value="${education.id}"
+                            th:text="${education.city + ',' + education.name + ',' + education.number}"
+                            th:selected="${education.id == abiturient.education.id}"></option>
+                </select>
+            </div>
+
+            <!-- Дата окончания учебного заведения -->
+            <div class="form-group">
+                <label for="dateOfEnd">Дата окончания учебного заведения:</label>
+                <input type="date" id="dateOfEnd"
+                       th:value="${@dateFormatterUtil.formatOffsetDateTime(abiturient.dateOfEnd, 'yyyy-MM-dd')}"
+                       name="dateOfEnd" required>
+            </div>
+
+            <!-- Адрес -->
+            <div class="form-group">
+                <label for="address-index">Индекс:</label>
+                <input type="text" id="address-index" th:value="${abiturient.address.index}" name="address.index"
+                       placeholder="Введите индекс" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address-territory">Регион:</label>
+                <input type="text" id="address-territory" th:value="${abiturient.address.territory}"
+                       name="address.territory" placeholder="Введите регион" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address-locality">Населенный пункт:</label>
+                <input type="text" id="address-locality" th:value="${abiturient.address.locality}"
+                       name="address.locality" placeholder="Введите населенный пункт" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address-street">Улица:</label>
+                <input type="text" id="address-street" th:value="${abiturient.address.street}" name="address.street"
+                       placeholder="Введите улицу" required>
+            </div>
+
+            <div class="form-group">
+                <label for="address-number">Номер дома:</label>
+                <input type="text" id="address-number" th:value="${abiturient.address.number}" name="address.number"
+                       placeholder="Введите номер дома" required>
+            </div>
+
+            <!-- Специальность -->
+            <div class="form-group">
+                <label for="specialty">Специальность:</label>
+                <select id="specialty" name="specialty" required>
+                    <option value="" disabled selected>Выберите специальность</option>
+                    <option th:each="specialty : ${specialties}"
+                            th:value="${specialty.id}"
+                            th:text="${specialty.name}"
+                            th:selected="${specialty.id == abiturient.speciality.id}"></option>
+                </select>
+            </div>
+
+            <!-- Индивидуальные достижения -->
+            <div class="form-group">
+                <label for="achievement">Индивидуальное достижение:</label>
+                <select id="achievement" name="achievement">
+                    <option value="" disabled selected>Выберите индивидуальное достижение</option>
+                    <option th:each="achievement : ${achievements}"
+                            th:value="${achievement.id}"
+                            th:text="${achievement.name}"
+                            th:selected="${achievement.id == abiturient.achievement.id}"></option>
+                </select>
+            </div>
+
+            <!-- Категория -->
+            <div class="form-group">
+                <label for="category">Категория:</label>
+                <select id="category" name="category" required>
+                    <option value="" disabled selected>Выберите категорию</option>
+                    <option th:each="category : ${categories}"
+                            th:value="${category.id}"
+                            th:text="${category.name}"
+                            th:selected="${category.id == abiturient.category.id}"></option>
+                </select>
+            </div>
+
+            <!-- Телефон -->
+            <div class="form-group">
+                <label for="phoneNumber">Телефон:</label>
+                <input type="tel" id="phoneNumber" th:value="${abiturient.phoneNumber}" name="phoneNumber"
+                       placeholder="Введите телефон" required>
+            </div>
+
+            <!-- Кнопка сохранения -->
+            <div class="form-group">
+                <button type="submit">Сохранить изменения</button>
+            </div>
+        </form>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Приемная комиссия. Все права защищены.</p>
+</footer>
+
+</body>
+</html>

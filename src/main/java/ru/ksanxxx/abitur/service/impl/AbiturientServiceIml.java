@@ -7,6 +7,8 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.ksanxxx.abitur.model.Abiturient;
 import ru.ksanxxx.abitur.repository.AbiturientRepository;
 import ru.ksanxxx.abitur.service.AbiturientService;
+import ru.ksanxxx.abitur.util.exception.ServerLogicException;
+import ru.ksanxxx.abitur.util.exception.ServerLogicExceptionType;
 
 import java.util.List;
 
@@ -27,7 +29,8 @@ public class AbiturientServiceIml implements AbiturientService {
     @Override
     @Transactional(readOnly = true)
     public Abiturient getAbiturientById(Integer id) {
-        return abiturientRepository.findById(id).orElse(null);
+        return abiturientRepository.findById(id)
+                .orElseThrow(() -> new ServerLogicException("Абитуриент с таким id не найден", ServerLogicExceptionType.NOT_FOUND));
     }
 
     @Override
@@ -38,7 +41,8 @@ public class AbiturientServiceIml implements AbiturientService {
 
     @Override
     @Transactional
-    public void delete(Abiturient abiturient) {
-        abiturientRepository.delete(abiturient);
+    public void delete(Integer id) {
+        abiturientRepository.deleteById(id);
     }
+
 }

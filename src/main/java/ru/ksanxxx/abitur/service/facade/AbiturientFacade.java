@@ -51,8 +51,16 @@ public class AbiturientFacade {
         return result;
     }
 
+    public Abiturient getById(Integer id) {
+        return abiturientService.getAbiturientById(id);
+    }
+
     public Abiturient saveAbiturient(Abiturient abiturient) {
         return abiturientService.save(abiturient);
+    }
+
+    public void deleteAbiturient(Integer id) {
+        abiturientService.delete(id);
     }
 
 }

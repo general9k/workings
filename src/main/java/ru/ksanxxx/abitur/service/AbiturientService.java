@@ -12,5 +12,5 @@ public interface AbiturientService {
 
     Abiturient save(Abiturient abiturient);
 
-    void delete(Abiturient id);
+    void delete(Integer id);
 }

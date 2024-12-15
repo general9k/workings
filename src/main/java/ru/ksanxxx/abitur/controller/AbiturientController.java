@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import ru.ksanxxx.abitur.controller.api.AbiturientControllerApi;
 import ru.ksanxxx.abitur.model.Abiturient;
+import ru.ksanxxx.abitur.model.Address;
 import ru.ksanxxx.abitur.model.Category;
 import ru.ksanxxx.abitur.model.request.CreateAbiturientRequest;
 import ru.ksanxxx.abitur.service.facade.AbiturientFacade;
@@ -48,6 +49,7 @@ public class AbiturientController implements AbiturientControllerApi {
         model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
         model.addAttribute("isAdmin", userFacade.isAdmin());
         model.addAttribute("isOperator", userFacade.isOperator());
+        model.addAttribute("isEditor", userFacade.isEditor());
         model.addAttribute("currentCategory", categoryName);
         model.addAttribute("currentSort", sort);
         model.addAttribute("currentIsAchievement", isAchievement);
@@ -89,21 +91,51 @@ public class AbiturientController implements AbiturientControllerApi {
     }
 
     @Override
-    public String getAbiturient(Integer id, Model model) {
-        Abiturient abiturient = userFacade.getAbiturient(id);
+    public String editAbiturient(Model model, Integer id) {
+        Abiturient abiturient = abiturientFacade.getById(id);
+
         model.addAttribute("abiturient", abiturient);
-        return "abiturient";
+        model.addAttribute("educations", educationFacade.getAll());
+        model.addAttribute("specialties", specialtyFacade.getAll());
+        model.addAttribute("achievements", achievementFacade.getAll());
+        model.addAttribute("categories", categoryFacade.getAll());
+
+        model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
+        model.addAttribute("isAdmin", userFacade.isAdmin());
+
+        return "api/v1/abiturients/edit";
     }
 
     @Override
-    public String createAbiturient(Abiturient abiturient) {
-        userFacade.saveAbiturient(abiturient);
-        return "redirect:/abiturients";
+    public String editAbiturient(Model model, CreateAbiturientRequest request, Integer id) {
+
+        Abiturient abiturient = abiturientFacade.getById(id);
+
+        request.getAddress().setId(abiturient.getAddress().getId());
+
+        abiturient.setLastName(request.getLastName());
+        abiturient.setFirstName(request.getFirstName());
+        abiturient.setPatronymic(request.getPatronymic());
+        abiturient.setDateOfBirth(request.getDateOfBirth().atStartOfDay(ZoneOffset.UTC).toOffsetDateTime());
+        abiturient.setDateOfEnd(request.getDateOfEnd().atStartOfDay(ZoneOffset.UTC).toOffsetDateTime());
+        abiturient.setPhoneNumber(request.getPhoneNumber());
+        abiturient.setEducation(educationFacade.getById(request.getEducation()));
+        abiturient.setAddress(addressFacade.saveAddress(request.getAddress()));
+        abiturient.setAchievement(achievementFacade.getById(request.getAchievement()));
+        abiturient.setSpeciality(specialtyFacade.getById(request.getSpecialty()));
+        abiturient.setCategory(categoryFacade.getById(request.getCategory()));
+
+        abiturientFacade.saveAbiturient(abiturient);
+
+        model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
+        model.addAttribute("isAdmin", userFacade.isAdmin());
+
+        return "redirect:/api/v1/abiturients";
     }
 
     @Override
     public String deleteAbiturient(Integer id) {
-        userFacade.deleteAbiturient(id);
-        return "redirect:/abiturients";
+        abiturientFacade.deleteAbiturient(id);
+        return "redirect:/api/v1/abiturients";
     }
 }
