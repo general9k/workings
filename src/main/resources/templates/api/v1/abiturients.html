@@ -65,7 +65,8 @@
                 <th>Дата окончания учебного заведения</th>
                 <th>Адрес</th>
                 <th>Специальность</th>
-                <th>Индивидуальные достижения</th>
+                <th>Сумма количества баллов</th>
+                <th>Индивидуальное достижение</th>
                 <th>Категория</th>
                 <th>Телефон</th>
                 <th>Действия</th>
@@ -82,15 +83,19 @@
                 <td th:text="${abiturient.address.index + ',' + abiturient.address.territory + ',' + abiturient.address.locality +
                 ',' + abiturient.address.street + ',' + abiturient.address.number}"></td>
                 <td th:text="${abiturient.speciality.name}"></td>
+                <td th:text="${abiturient.points}"></td>
                 <td th:text="${abiturient.achievement.name}"></td>
                 <td th:text="${abiturient.category.name}"></td>
                 <td th:text="${abiturient.phoneNumber}"></td>
                 <td>
                     <div class="actions">
-                        <form th:if="${isEditor || isAdmin}" th:action="@{/api/v1/abiturients/{id}/edit(id=${abiturient.id})}" method="get" style="display:inline;">
+                        <form th:if="${isEditor || isAdmin}"
+                              th:action="@{/api/v1/abiturients/{id}/edit(id=${abiturient.id})}" method="get"
+                              style="display:inline;">
                             <button type="submit">Редактировать</button>
                         </form>
-                        <form th:if="${isAdmin}" th:action="@{/api/v1/abiturients}" method="post" style="display:inline;">
+                        <form th:if="${isAdmin}" th:action="@{/api/v1/abiturients}" method="post"
+                              style="display:inline;">
                             <input type="hidden" name="id" th:value="${abiturient.id}"/>
                             <input type="hidden" name="_method" value="DELETE"/>
                             <button type="submit" onclick="return confirm('Вы уверены?')">Удалить</button>

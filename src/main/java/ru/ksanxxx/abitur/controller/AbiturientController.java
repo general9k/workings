@@ -6,7 +6,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import ru.ksanxxx.abitur.controller.api.AbiturientControllerApi;
 import ru.ksanxxx.abitur.model.Abiturient;
-import ru.ksanxxx.abitur.model.Address;
 import ru.ksanxxx.abitur.model.Category;
 import ru.ksanxxx.abitur.model.request.CreateAbiturientRequest;
 import ru.ksanxxx.abitur.service.facade.AbiturientFacade;
@@ -83,6 +82,7 @@ public class AbiturientController implements AbiturientControllerApi {
                 .achievement(achievementFacade.getById(request.getAchievement()))
                 .speciality(specialtyFacade.getById(request.getSpecialty()))
                 .category(categoryFacade.getById(request.getCategory()))
+                .points(request.getPoints())
                 .build();
 
         abiturientFacade.saveAbiturient(abiturient);
@@ -124,6 +124,7 @@ public class AbiturientController implements AbiturientControllerApi {
         abiturient.setAchievement(achievementFacade.getById(request.getAchievement()));
         abiturient.setSpeciality(specialtyFacade.getById(request.getSpecialty()));
         abiturient.setCategory(categoryFacade.getById(request.getCategory()));
+        abiturient.setPoints(request.getPoints());
 
         abiturientFacade.saveAbiturient(abiturient);
 

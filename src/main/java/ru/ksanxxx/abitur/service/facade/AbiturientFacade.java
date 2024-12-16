@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import ru.ksanxxx.abitur.model.Abiturient;
 import ru.ksanxxx.abitur.service.AbiturientService;
 
+import java.util.Comparator;
 import java.util.List;
 
 @Service
@@ -49,6 +50,21 @@ public class AbiturientFacade {
         }
 
         return result;
+    }
+
+    public List<Abiturient> getAbiturients(String spec) {
+
+        List<Abiturient> result = abiturientService.getAllAbiturients();
+
+        if (spec != null && !spec.isEmpty()) {
+            result = result.stream()
+                    .filter(abiturient -> abiturient.getSpeciality().getName().equalsIgnoreCase(spec))
+                    .toList();
+        }
+
+        return result.stream()
+                .sorted(Comparator.comparing(Abiturient::getPoints))
+                .toList().reversed();
     }
 
     public Abiturient getById(Integer id) {

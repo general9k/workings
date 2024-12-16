@@ -46,6 +46,9 @@ public class Abiturient {
     @Column(name = "phone_number", nullable = false)
     private String phoneNumber;
 
+    @Column(name = "points", nullable = false)
+    private Integer points;
+
     @ManyToOne
     @JoinColumn(name = "education", referencedColumnName = "id", nullable = false)
     private Education education;

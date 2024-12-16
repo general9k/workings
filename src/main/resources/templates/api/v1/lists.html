@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Конкурсные списки</title>
+    <link rel="stylesheet" href="/css/stylesLists.css">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/api/v1/index">Главная</a></li>
+        <li><a href="/api/v1/lists">Списки</a></li>
+        <li th:if="${isAuthenticated}"><a href="/api/v1/abiturients">Абитуриенты</a></li>
+        <li><a href="/api/v1/specialities">Специальности</a></li>
+        <li th:if="${isAdmin}"><a href="/api/v1/education">Учебные заведения</a></li>
+        <li th:if="${isAdmin}"><a href="/api/v1/users">Пользователи</a></li>
+        <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
+        <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
+    </ul>
+</nav>
+<main>
+    <section class="list-section">
+        <h1>Конкурсные списки</h1>
+
+        <div class="filters">
+            <form method="get" th:action="@{/api/v1/lists}">
+
+                <label for="spec">Специальность:</label>
+                <select id="spec" name="spec">
+                    <option value="" th:selected="${speciality == ''}">Все</option>
+                    <option th:each="speciality : ${specialities}"
+                            th:value="${speciality.name}"
+                            th:text="${speciality.name}"
+                            th:selected="${currentSpeciality == speciality.name}"></option>
+                </select>
+
+                <button type="submit">Применить</button>
+            </form>
+            <table class="contestant-table">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Фамилия</th>
+                    <th>Специальность</th>
+                    <th>Индивидуальное достижение</th>
+                    <th>Сумма баллов</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- Thymeleaf: Цикл по списку абитуриентов -->
+                <tr th:each="abiturient : ${abiturients}">
+                    <td th:text="${abiturient.id}"></td>
+                    <td th:text="${abiturient.lastName}"></td>
+                    <td th:text="${abiturient.speciality.name}"></td>
+                    <td th:text="${abiturient.achievement.name}"></td>
+                    <td th:text="${abiturient.points}"></td>
+                </tr>
+                <!-- Если список пустой -->
+                <tr th:if="${#lists.isEmpty(abiturients)}">
+                    <td colspan="5">Данные отсутствуют</td>
+                </tr>
+                </tbody>
+            </table>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2024 Приемная комиссия. Все права защищены.</p>
+</footer>
+</body>
+</html>

@@ -200,6 +200,9 @@
                              referencedTableName="categories"
                              referencedColumnNames="id"/>
             </column>
+            <column name="points" type="integer">
+                <constraints nullable="false"/>
+            </column>
         </createTable>
     </changeSet>
 

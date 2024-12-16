@@ -74,12 +74,14 @@
 
             <div class="form-group">
                 <label for="address-territory">Регион:</label>
-                <input type="text" id="address-territory" name="address.territory" placeholder="Введите регион" required>
+                <input type="text" id="address-territory" name="address.territory" placeholder="Введите регион"
+                       required>
             </div>
 
             <div class="form-group">
                 <label for="address-locality">Населенный пункт:</label>
-                <input type="text" id="address-locality" name="address.locality" placeholder="Введите населенный пункт" required>
+                <input type="text" id="address-locality" name="address.locality" placeholder="Введите населенный пункт"
+                       required>
             </div>
 
             <div class="form-group">
@@ -101,6 +103,12 @@
                             th:value="${specialty.id}"
                             th:text="${specialty.name}"></option>
                 </select>
+            </div>
+
+            <div class="form-group">
+                <label for="points">Сумма баллов:</label>
+                <input type="number" id="points" name="points" placeholder="Введите сумму баллов по экзаменам:"
+                       required>
             </div>
 
             <!-- Индивидуальные достижения -->

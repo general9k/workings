@@ -27,6 +27,8 @@ public class CreateAbiturientRequest {
 
     private Integer specialty;
 
+    private Integer points;
+
     private Integer achievement;
 
     private Integer category;
