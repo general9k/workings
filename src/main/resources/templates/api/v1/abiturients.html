@@ -111,6 +111,16 @@
                th:href="@{/api/v1/abiturients/create}"
                class="btn">Создать абитуриента</a>
         </div>
+
+        <div class="actions">
+            <button
+                    onclick="window.location.href='/api/v1/abiturients/print/pdf?categoryName=' + encodeURIComponent(document.getElementById('category').value)
+            + '&isAchievement=' + encodeURIComponent(document.getElementById('isAchievement').value)
+            + '&sort=' + encodeURIComponent(document.getElementById('sort').value)"
+                    class="btn">
+                Скачать PDF
+            </button>
+        </div>
     </section>
 </main>
 

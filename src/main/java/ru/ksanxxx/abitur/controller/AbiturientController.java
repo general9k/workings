@@ -1,7 +1,18 @@
 package ru.ksanxxx.abitur.controller;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.Element;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.BaseFont;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import jakarta.servlet.http.HttpServletResponse;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.HttpHeaders;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import ru.ksanxxx.abitur.controller.api.AbiturientControllerApi;
@@ -17,12 +28,15 @@ import ru.ksanxxx.abitur.service.facade.SpecialtyFacade;
 import ru.ksanxxx.abitur.service.facade.UserFacade;
 
 import java.time.ZoneOffset;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 @Slf4j
 @Controller
 @RequiredArgsConstructor
 public class AbiturientController implements AbiturientControllerApi {
+
+    private static final DateTimeFormatter DATE_FORMATTER = DateTimeFormatter.ofPattern("yyyy.MM.dd");
 
     private final UserFacade userFacade;
 
@@ -53,6 +67,80 @@ public class AbiturientController implements AbiturientControllerApi {
         model.addAttribute("currentSort", sort);
         model.addAttribute("currentIsAchievement", isAchievement);
         return "api/v1/abiturients";
+    }
+
+    @Override
+    public void generateFilteredPdf(String categoryName, Boolean isAchievement, String sort, HttpServletResponse response) {
+        try {
+            response.setContentType("application/pdf");
+            response.setHeader(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=abiturients_filtered.pdf");
+
+            List<Abiturient> abiturients = abiturientFacade.getAbiturients(categoryName, isAchievement, sort);
+
+            Document document = new Document();
+            PdfWriter.getInstance(document, response.getOutputStream());
+
+            document.open();
+            document.add(new Paragraph("Список абитуриентов", getRussianFont(16, Font.BOLD)));
+
+            document.add(new Paragraph(String.format("Фильтры: Категория = %s, Инд. достижения = %s, Сортировка = %s",
+                    categoryName != null && !categoryName.isEmpty() ? categoryName : "Все",
+                    isAchievement != null ? (isAchievement ? "Имеются" : "Не имеются") : "Все",
+                    sort != null && !sort.isEmpty() ? getSortedParameters(sort) : "Не задана"
+            ), getRussianFont(12, Font.NORMAL)));
+
+            PdfPTable table = new PdfPTable(6);
+            table.setWidthPercentage(100);
+            table.setSpacingBefore(10f);
+
+            addTableHeader(table, "Фамилия", "Имя", "Дата рождения", "Учебное заведение", "Специальность", "Сумма баллов");
+
+            for (Abiturient abiturient : abiturients) {
+                table.addCell(new Phrase(abiturient.getLastName(), getRussianFont(10, Font.NORMAL)));
+                table.addCell(new Phrase(abiturient.getFirstName(), getRussianFont(10, Font.NORMAL)));
+                table.addCell(new Phrase(abiturient.getDateOfBirth().format(DATE_FORMATTER), getRussianFont(10, Font.NORMAL)));
+                table.addCell(new Phrase(abiturient.getEducation().getName() + "," +
+                                         abiturient.getEducation().getNumber().toString() + "," + abiturient.getEducation().getCity(), getRussianFont(10, Font.NORMAL)));
+                table.addCell(new Phrase(abiturient.getSpeciality().getName(), getRussianFont(10, Font.NORMAL)));
+                table.addCell(new Phrase(abiturient.getPoints().toString(), getRussianFont(10, Font.NORMAL)));
+            }
+
+            document.add(table);
+            document.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void addTableHeader(PdfPTable table, String... headers) {
+        for (String header : headers) {
+            PdfPCell cell = new PdfPCell();
+            cell.setPhrase(new Phrase(header, getRussianFont(12, Font.BOLD)));
+            cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+            table.addCell(cell);
+        }
+    }
+
+    private static Font getRussianFont(int size, int style) {
+        try {
+            String fontPath = "static/fonts/arial.ttf"; // Укажите путь к шрифту
+            BaseFont baseFont = BaseFont.createFont(fontPath, BaseFont.IDENTITY_H, BaseFont.EMBEDDED);
+            return new Font(baseFont, size, style);
+        } catch (Exception e) {
+            throw new RuntimeException("Ошибка загрузки шрифта", e);
+        }
+    }
+
+    private static String getSortedParameters(String paramSort) {
+        switch (paramSort) {
+            case "firstName":
+                return "Фамилия";
+            case "lastName":
+                return "Имя";
+            case "birthDate":
+                return "Дата рождения";
+        }
+        return "";
     }
 
     @Override // GET

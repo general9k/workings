@@ -1,5 +1,6 @@
 package ru.ksanxxx.abitur.controller.api;
 
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,6 +20,16 @@ public interface AbiturientControllerApi {
                           @RequestParam(required = false) String categoryName,
                           @RequestParam(required = false) Boolean isAchievement,
                           @RequestParam(required = false) String sort);
+
+    @RequestMapping(
+            value = "abiturients/print/pdf",
+            method = RequestMethod.GET
+    )
+    void generateFilteredPdf(
+            @RequestParam(required = false) String categoryName,
+            @RequestParam(required = false) Boolean isAchievement,
+            @RequestParam(required = false) String sort,
+            HttpServletResponse response);
 
     @RequestMapping(
             value = "abiturients/create",
