@@ -9,4 +9,8 @@ public interface EducationService {
     List<Education> getAllEducations();
 
     Education getEducationById(Integer id);
+
+    void delete(Integer id);
+
+    void save(Education education);
 }

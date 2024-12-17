@@ -31,4 +31,16 @@ public class EducationServiceImpl implements EducationService {
         return educationRepository.findById(id)
                 .orElseThrow(() -> new ServerLogicException("Учебное заведение не найдено", ServerLogicExceptionType.NOT_FOUND));
     }
+
+    @Override
+    @Transactional
+    public void delete(Integer id) {
+        educationRepository.deleteById(id);
+    }
+
+    @Override
+    @Transactional
+    public void save(Education education) {
+        educationRepository.save(education);
+    }
 }

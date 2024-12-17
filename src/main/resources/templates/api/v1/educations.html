@@ -31,7 +31,7 @@
     <section class="education-list">
         <div class="table-header">
             <h2>Учебные заведения</h2>
-            <a th:if="${isAdmin}" href="/api/v1/education/create" class="btn btn-create">Создать</a>
+            <a th:if="${isAdmin}" href="/api/v1/educations/create" class="btn btn-create">Создать</a>
         </div>
 
         <table>
@@ -51,7 +51,11 @@
                 <td th:text="${education.number}">123</td>
                 <td th:text="${education.city}">Город</td>
                 <td th:if="${isAdmin}">
-                    <a th:href="@{'/api/v1/education/delete/' + ${education.id}}" class="btn btn-delete">Удалить</a>
+                    <form th:action="@{/api/v1/educations}" method="post">
+                        <input type="hidden" name="_method" value="delete" />
+                        <input type="hidden" name="id" th:value="${education.id}" />
+                        <button type="submit" class="btn btn-delete">Удалить</button>
+                    </form>
                 </td>
             </tr>
             </tbody>

@@ -156,7 +156,7 @@ public class AbiturientController implements AbiturientControllerApi {
     }
 
     @Override // POST
-    public String createAbiturient(Model model, CreateAbiturientRequest request) {
+    public String createAbiturient(CreateAbiturientRequest request) {
 
         Abiturient abiturient = Abiturient.builder()
                 .lastName(request.getLastName())
@@ -195,7 +195,7 @@ public class AbiturientController implements AbiturientControllerApi {
     }
 
     @Override
-    public String editAbiturient(Model model, CreateAbiturientRequest request, Integer id) {
+    public String editAbiturient(CreateAbiturientRequest request, Integer id) {
 
         Abiturient abiturient = abiturientFacade.getById(id);
 
@@ -215,9 +215,6 @@ public class AbiturientController implements AbiturientControllerApi {
         abiturient.setPoints(request.getPoints());
 
         abiturientFacade.saveAbiturient(abiturient);
-
-        model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
-        model.addAttribute("isAdmin", userFacade.isAdmin());
 
         return "redirect:/api/v1/abiturients";
     }

@@ -19,5 +19,15 @@ public class EducationFacade {
         return educationService.getAllEducations();
     }
 
-    public Education getById(Integer id) {return educationService.getEducationById(id);}
+    public Education getById(Integer id) {
+        return educationService.getEducationById(id);
+    }
+
+    public void create(Education education) {
+        educationService.save(education);
+    }
+
+    public void delete(Integer id) {
+        educationService.delete(id);
+    }
 }

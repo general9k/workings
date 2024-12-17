@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                   https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-latest.xsd">
+
+    <changeSet id="2024-11-21-insert_education" author="ksanxxx">
+        <insert tableName="auth_user">
+            <column name="id">1</column>
+            <column name="username">admin</column>
+            <column name="password">$2a$10$B6fiQkEdYlfqfcVKztGwBuGXBdeaSbX0.alrolg2U2bMGYxmDlLiG</column>
+            <column name="last_name">admin</column>
+            <column name="first_name">admin</column>
+            <column name="patronymic">admin</column>
+            <column name="role">ADMIN</column>
+        </insert>
+    </changeSet>
+</databaseChangeLog>

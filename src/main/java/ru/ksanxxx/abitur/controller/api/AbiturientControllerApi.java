@@ -40,7 +40,7 @@ public interface AbiturientControllerApi {
     @RequestMapping(
             value = "abiturients/create",
             method = RequestMethod.POST)
-    String createAbiturient(Model model, CreateAbiturientRequest request);
+    String createAbiturient(CreateAbiturientRequest request);
 
     @RequestMapping(
             value = "abiturients/{id}/edit",
@@ -52,7 +52,7 @@ public interface AbiturientControllerApi {
             value = "abiturients/{id}/edit",
             method = RequestMethod.PUT
     )
-    String editAbiturient(Model model, CreateAbiturientRequest request, @PathVariable Integer id);
+    String editAbiturient(CreateAbiturientRequest request, @PathVariable Integer id);
 
     @RequestMapping(
             value = "abiturients",
