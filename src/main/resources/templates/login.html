@@ -2,24 +2,41 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Вход в систему</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/stylesLogin.css">
 </head>
 <body>
-<div class="container">
-    <h2>Вход в систему</h2>
-    <form action="/login" method="post">
-        <label for="username">Логин:</label>
-        <input type="text" id="username" name="username" required>
+<!-- Шапка -->
+<nav>
+    <ul>
+        <li><a href="/api/v1/index">Главная</a></li>
+        <li><a href="/api/v1/lists">Списки</a></li>
+        <li><a href="/api/v1/specialities">Специальности</a></li>
+    </ul>
+</nav>
 
-        <label for="password">Пароль:</label>
-        <input type="password" id="password" name="password" required>
+<!-- Основное содержимое -->
+<main>
+    <div class="container">
+        <h2>Вход в систему</h2>
+        <form action="/login" method="post">
+            <label for="username">Логин:</label>
+            <input type="text" id="username" name="username" required>
 
-        <button type="submit">Войти</button>
-    </form>
-    <form action="/registration" method="get">
-        <button type="submit">Зарегистрироваться</button>
-    </form>
-</div>
+            <label for="password">Пароль:</label>
+            <input type="password" id="password" name="password" required>
+
+            <button type="submit">Войти</button>
+        </form>
+
+    </div>
+</main>
+
+<!-- Футер -->
+<footer>
+    <p>&copy; 2024 Приемная комиссия. Все права защищены.</p>
+</footer>
 </body>
 </html>
+
