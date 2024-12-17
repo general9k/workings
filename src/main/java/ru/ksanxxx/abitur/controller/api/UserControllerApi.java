@@ -30,4 +30,11 @@ public interface UserControllerApi {
             method = RequestMethod.GET
     )
     String startPage(Model model);
+
+    @RequestMapping(
+            value = "/api/v1/users",
+            method = RequestMethod.GET
+    )
+    String getUsers(Model model);
+
 }

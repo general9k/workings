@@ -46,4 +46,9 @@ public class UserController implements UserControllerApi {
         model.addAttribute("isAdmin", facade.isAdmin());
         return "api/v1/index";
     }
+
+    @Override
+    public String getUsers(Model model) {
+        return "";
+    }
 }
