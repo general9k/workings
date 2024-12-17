@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание нового учебного заведения</title>
+    <link rel="stylesheet" href="/css/stylesCreateEducation.css">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/api/v1/index">Главная</a></li>
+        <li><a href="/api/v1/lists">Списки</a></li>
+        <li th:if="${isAuthenticated}"><a href="/api/v1/abiturients">Абитуриенты</a></li>
+        <li><a href="/api/v1/specialities">Специальности</a></li>
+        <li th:if="${isAdmin}"><a href="/api/v1/education">Учебные заведения</a></li>
+        <li th:if="${isAdmin}"><a href="/api/v1/users">Пользователи</a></li>
+        <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
+        <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
+    </ul>
+</nav>
+<main>
+    <section class="create-education-section">
+        <h1>Создание нового учебного заведения</h1>
+        <form action="/api/v1/education/create" method="post" class="create-education-form">
+
+            <div class="form-group">
+                <label for="name">Название учебного заведения:</label>
+                <input type="text" id="name" name="name" required placeholder="Введите название учебного заведения">
+            </div>
+
+            <div class="form-group">
+                <label for="number">Номер учебного заведения:</label>
+                <input type="text" id="number" name="number" required placeholder="Введите номер учебного заведения">
+            </div>
+
+            <div class="form-group">
+                <label for="city">Город:</label>
+                <input type="text" id="city" name="city" required placeholder="Введите город">
+            </div>
+
+            <div class="form-actions">
+                <button type="submit" class="save-btn">Сохранить</button>
+                <button type="button" class="cancel-btn" th:onclick="'location.href=\'/api/v1/education\''">Отмена</button>
+            </div>
+        </form>
+    </section>
+</main>
+<footer>
+    <p>&copy; 2024 Приемная комиссия. Все права защищены.</p>
+</footer>
+</body>
+</html>

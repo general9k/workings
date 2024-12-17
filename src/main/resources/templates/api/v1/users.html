@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Пользователи</title>
+    <link rel="stylesheet" href="/css/stylesUsers.css">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/api/v1/index">Главная</a></li>
+        <li><a href="/api/v1/lists">Списки</a></li>
+        <li th:if="${isAuthenticated}"><a href="/api/v1/abiturients">Абитуриенты</a></li>
+        <li><a href="/api/v1/specialities">Специальности</a></li>
+        <li th:if="${isAdmin}"><a href="/api/v1/education">Учебные заведения</a></li>
+        <li th:if="${isAdmin}"><a href="/api/v1/users">Пользователи</a></li>
+        <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
+        <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
+    </ul>
+</nav>
+
+<header>
+    <div class="container">
+        <h1>Список пользователей</h1>
+        <p>Управляйте учетными записями пользователей</p>
+    </div>
+</header>
+
+<main>
+    <section class="user-list">
+        <div class="table-header">
+            <h2>Пользователи</h2>
+            <a href="/api/v1/users/create" class="btn btn-create">Создать</a> <!--вот тут переход на нашу registration -->
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>Имя пользователя</th>
+                <th>Пароль</th>
+                <th>Фамилия</th>
+                <th>Имя</th>
+                <th>Отчество</th>
+                <th>Роль</th>
+                <th>Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user, iterStat : ${auth_users}">
+                <td th:text="${iterStat.count}">1</td>
+                <td th:text="${user.username}">username</td>
+                <td th:text="${user.password}">password</td>
+                <td th:text="${user.last_name}">last_name</td>
+                <td th:text="${user.first_name}">first_name</td>
+                <td th:text="${user.patronymic}">patronymic</td>
+                <td th:text="${user.role}">role</td>
+                <td>
+                    <a th:href="@{'/api/v1/users/delete/' + ${user.id}}" class="btn btn-delete">Удалить</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Приемная комиссия. Все права защищены.</p>
+</footer>
+</body>
+</html>

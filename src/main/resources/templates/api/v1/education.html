@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Учебные заведения</title>
+    <link rel="stylesheet" href="/css/stylesEducation.css">
+</head>
+<body>
+<nav>
+    <ul>
+        <li><a href="/api/v1/index">Главная</a></li>
+        <li><a href="/api/v1/lists">Списки</a></li>
+        <li th:if="${isAuthenticated}"><a href="/api/v1/abiturients">Абитуриенты</a></li>
+        <li><a href="/api/v1/specialities">Специальности</a></li>
+        <li th:if="${isAdmin}"><a href="/api/v1/education">Учебные заведения</a></li>
+        <li th:if="${isAdmin}"><a href="/api/v1/users">Пользователи</a></li>
+        <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
+        <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
+    </ul>
+</nav>
+
+<header>
+    <div class="container">
+        <h1>Список учебных заведений</h1>
+        <p>Управляйте информацией об учебных заведениях</p>
+    </div>
+</header>
+
+<main>
+    <section class="education-list">
+        <div class="table-header">
+            <h2>Учебные заведения</h2>
+            <a th:if="${isAdmin}" href="/api/v1/education/create" class="btn btn-create">Создать</a>
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>№</th>
+                <th>Название</th>
+                <th>Номер</th>
+                <th>Город</th>
+                <th th:if="${isAdmin}">Действия</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="edu, iterStat : ${educations}">
+                <td th:text="${iterStat.count}">1</td>
+                <td th:text="${edu.name}">Название</td>
+                <td th:text="${edu.number}">123</td>
+                <td th:text="${edu.city}">Город</td>
+                <td th:if="${isAdmin}">
+                    <a th:href="@{'/api/v1/education/delete/' + ${edu.id}}" class="btn btn-delete">Удалить</a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+</main>
+
+<footer>
+    <p>&copy; 2024 Приемная комиссия. Все права защищены.</p>
+</footer>
+</body>
+</html>
