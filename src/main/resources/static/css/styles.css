@@ -1,56 +1,135 @@
+/* Общие стили */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f0f2f5;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+    background: linear-gradient(135deg, #005dd7, #ff8800);
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden; /* Убираем горизонтальный скролл */
+}
+
+/* Навигация */
+nav {
+    background: #454545;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
     display: flex;
     justify-content: center;
-    align-items: center;
-    height: 100vh;
+}
+
+nav ul li {
     margin: 0;
 }
 
+nav ul li a {
+    text-decoration: none;
+    color: #fff;
+    padding: 2rem 2rem;
+    display: block;
+}
+
+nav ul li a:hover {
+    background: #0078D7;
+}
+
+/* Основная часть */
 .container {
-    background-color: white;
-    padding: 20px;
+    padding: 2rem;
+    background: #fff;
+    margin: 3rem auto;
+    max-width: 900px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 400px;
 }
 
-h2 {
+.container h2 {
     text-align: center;
+    font-size: 2rem;
+    color: #0078D7;
+    margin-bottom: 1.5rem;
 }
 
+/* Стили для формы */
 form {
     display: flex;
     flex-direction: column;
 }
 
 label {
-    margin-top: 10px;
-    font-weight: bold;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    color: #333;
 }
 
 input[type="text"],
 input[type="password"],
-input[type="tel"],
 select {
-    padding: 10px;
-    margin-top: 5px;
-    border: 1px solid #ccc;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ddd;
     border-radius: 5px;
+    font-size: 1rem;
+}
+
+input[type="text"]:focus,
+input[type="password"]:focus,
+select:focus {
+    border-color: #0078D7;
+    outline: none;
+    box-shadow: 0 0 5px rgba(0, 120, 215, 0.5);
 }
 
 button {
-    margin-top: 20px;
-    padding: 10px;
-    background-color: #4CAF50;
-    color: white;
+    padding: 0.8rem;
+    font-size: 1rem;
+    color: #fff;
+    background: #0078D7;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    font-size: 16px;
+    transition: background 0.3s ease, transform 0.2s;
 }
 
 button:hover {
-    background-color: #45a049;
+    background: #005bb5;
+    transform: scale(1.02);
+}
+
+/* Подвал */
+footer {
+    background: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem 0;
+    margin-top: auto;
+    width: 100%; /* Растягиваем на всю ширину */
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        margin: 2rem auto;
+        padding: 1.5rem;
+    }
+
+    nav ul {
+        flex-direction: column;
+    }
+
+    nav ul li a {
+        padding: 1rem;
+    }
 }

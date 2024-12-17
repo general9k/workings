@@ -10,6 +10,8 @@ import ru.ksanxxx.abitur.model.AuthUser;
 import ru.ksanxxx.abitur.model.request.CreateClientRequest;
 import ru.ksanxxx.abitur.repository.AuthUserRepository;
 import ru.ksanxxx.abitur.service.AuthService;
+import ru.ksanxxx.abitur.util.exception.ServerLogicException;
+import ru.ksanxxx.abitur.util.exception.ServerLogicExceptionType;
 
 import java.util.List;
 
@@ -30,7 +32,11 @@ public class AuthUserServiceImpl implements AuthService {
         AuthUser authUser = authUserMapper.mapToAuthUser(createClientRequest);
         authUser.setPassword(passwordEncoder.encode(authUser.getPassword()));
 
-        authUserRepository.save(authUser);
+        try {
+            authUserRepository.save(authUser);
+        } catch (Exception e) {
+            throw new ServerLogicException("Пользователь с таким username уже есть на сайте", ServerLogicExceptionType.VALIDATION_ERROR);
+        }
     }
 
     @Override
