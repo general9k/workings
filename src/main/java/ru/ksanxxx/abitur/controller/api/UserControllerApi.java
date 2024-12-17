@@ -23,7 +23,7 @@ public interface UserControllerApi {
     @RequestMapping(
             value = "/registration",
             method = RequestMethod.GET)
-    String getRegistration();
+    String getRegistration(Model model);
 
     @RequestMapping(
             value = "/registration",

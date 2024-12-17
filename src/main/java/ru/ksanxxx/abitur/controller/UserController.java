@@ -34,7 +34,9 @@ public class UserController implements UserControllerApi {
     }
 
     @Override
-    public String getRegistration() {
+    public String getRegistration(Model model) {
+        model.addAttribute("isAuthenticated", userFacade.isAuthenticated());
+        model.addAttribute("isAdmin", userFacade.isAdmin());
         return "registration";
     }
 
