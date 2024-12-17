@@ -1,5 +1,11 @@
 /* Общие стили */
-body {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Учитываем границы и padding в общей ширине */
+}
+
+html, body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -9,12 +15,15 @@ body {
     display: flex;
     flex-direction: column;
     min-height: 100vh;
+    overflow-x: hidden; /* Убираем горизонтальный скролл */
 }
 
 /* Контейнер для всего содержимого */
 main {
     flex: 1;
     padding: 2rem;
+    max-width: 100%; /* Гарантируем, что main не выходит за пределы */
+    overflow-x: auto;
 }
 
 /* Навигация */
@@ -24,6 +33,7 @@ nav {
     position: sticky;
     top: 0;
     z-index: 1000;
+    width: 100%; /* Растягиваем на всю ширину */
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
@@ -87,16 +97,27 @@ nav ul li a:hover {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
+    table-layout: fixed; /* Фиксируем ширину колонок */
 }
 
 .applicants-table th, .applicants-table td {
     padding: 0.8rem;
     border: 1px solid #ddd;
     text-align: left;
+    word-wrap: break-word; /* Длинные слова переносятся */
 }
 
 .applicants-table th {
-    background-color: #f4f4f4;
+    background-color: #0078D7;
+    color: white;
+}
+
+.applicants-table tr:nth-child(even) {
+    background-color: #f9f9f9;
+}
+
+.applicants-table tr:hover {
+    background-color: #f1f1f1;
 }
 
 .actions button {
@@ -117,5 +138,6 @@ footer {
     color: #fff;
     text-align: center;
     padding: 1rem 0;
-    margin-top: auto;  /* Поднимаем футер к низу */
+    margin-top: auto;
+    width: 100%; /* Растягиваем на всю ширину */
 }
