@@ -78,10 +78,10 @@
                 <td th:text="${abiturient.firstName}"></td>
                 <td th:text="${abiturient.patronymic}"></td>
                 <td th:text="${@dateFormatterUtil.formatOffsetDateTime(abiturient.dateOfBirth, 'yyyy-MM-dd')}"></td>
-                <td th:text="${abiturient.education.city + ',' + abiturient.education.name + ',' + abiturient.education.number}"></td>
+                <td th:text="${abiturient.education.city + ', ' + abiturient.education.name + ', ' + abiturient.education.number}"></td>
                 <td th:text="${@dateFormatterUtil.formatOffsetDateTime(abiturient.dateOfEnd, 'yyyy-MM-dd')}"></td>
-                <td th:text="${abiturient.address.index + ',' + abiturient.address.territory + ',' + abiturient.address.locality +
-                ',' + abiturient.address.street + ',' + abiturient.address.number}"></td>
+                <td th:text="${abiturient.address.index + ', ' + abiturient.address.territory + ', ' + abiturient.address.locality +
+                ',' + abiturient.address.street + ', ' + abiturient.address.number}"></td>
                 <td th:text="${abiturient.speciality.name}"></td>
                 <td th:text="${abiturient.points}"></td>
                 <td th:text="${abiturient.achievement.name}"></td>

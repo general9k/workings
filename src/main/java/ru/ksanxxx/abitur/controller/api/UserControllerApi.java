@@ -10,6 +10,12 @@ import ru.ksanxxx.abitur.model.request.CreateClientRequest;
 @Controller
 public interface UserControllerApi {
     @RequestMapping(
+            value = "/",
+            method = RequestMethod.GET
+    )
+    String redirectOnIndex();
+
+    @RequestMapping(
             value = "/login",
             method = RequestMethod.GET)
     String getLogin(@RequestParam(required = false) Boolean error);
