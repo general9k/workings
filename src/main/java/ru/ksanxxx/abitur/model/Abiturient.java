@@ -58,7 +58,7 @@ public class Abiturient {
     private Address address;
 
     @ManyToOne
-    @JoinColumn(name = "achievement", referencedColumnName = "id", nullable = false)
+    @JoinColumn(name = "achievement", referencedColumnName = "id")
     private Achievement achievement;
 
     @ManyToOne
