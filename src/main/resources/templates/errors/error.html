@@ -7,8 +7,8 @@
     <title>Ошибка авторизации</title>
     <style>
         body {
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f9;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(to bottom right, #f5f7fa, #c3cfe2);
             color: #333;
             display: flex;
             justify-content: center;
@@ -18,31 +18,44 @@
         }
         .container {
             text-align: center;
-            background-color: #fff;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 300px;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 400px;
         }
         h1 {
+            font-size: 24px;
             color: #e74c3c;
+            margin-bottom: 20px;
         }
         p {
-            margin: 20px 0;
+            margin: 15px 0;
             font-size: 16px;
+            color: #555;
+            line-height: 1.5;
         }
         .btn {
-            padding: 10px 20px;
-            background-color: #3498db;
-            color: white;
+            display: inline-block;
+            margin: 10px 5px;
+            padding: 12px 20px;
+            background: #3498db;
+            color: #fff;
+            text-decoration: none;
             border: none;
             border-radius: 5px;
-            text-decoration: none;
-            display: inline-block;
             font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
         }
         .btn:hover {
-            background-color: #2980b9;
+            background: #2980b9;
+            transform: translateY(-2px);
+        }
+        .btn:active {
+            background: #1d6a97;
+            transform: translateY(0);
         }
     </style>
 </head>
@@ -50,10 +63,10 @@
 
 <div class="container">
     <h1>Ошибка авторизации</h1>
-    <p>Упс! Произошла ошибка при попытке войти в систему. Пожалуйста, проверьте ваши данные и попробуйте снова.</p>
+    <p>К сожалению, что-то пошло не так. Возможно, вы ввели неправильные данные.</p>
+    <p>Пожалуйста, попробуйте снова или вернитесь на главную страницу.</p>
     <a href="/login" class="btn">Перейти на страницу входа</a>
-    <br/>
-    <a href="/api/v1/index" class="btn">Перейти на главную страницу</a>
+    <a href="/api/v1/index" class="btn">Вернуться на главную</a>
 </div>
 
 </body>

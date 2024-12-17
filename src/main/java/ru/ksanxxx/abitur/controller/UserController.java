@@ -21,6 +21,11 @@ public class UserController implements UserControllerApi {
     private final UserFacade userFacade;
 
     @Override
+    public String redirectOnIndex() {
+        return "redirect:/api/v1/index";
+    }
+
+    @Override
     public String getLogin(Boolean error) {
         if (Boolean.TRUE.equals(error)) {
             return "errors/error";
