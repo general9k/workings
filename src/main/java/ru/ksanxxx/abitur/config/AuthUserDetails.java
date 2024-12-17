@@ -50,4 +50,9 @@ public class AuthUserDetails implements UserDetails {
     public boolean isEnabled() {
         return true;
     }
+
+    // Добавленный метод для получения ID пользователя
+    public Integer getId() {
+        return authUser.getId();
+    }
 }

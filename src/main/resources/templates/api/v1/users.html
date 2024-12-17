@@ -13,7 +13,7 @@
         <li><a href="/api/v1/lists">Списки</a></li>
         <li th:if="${isAuthenticated}"><a href="/api/v1/abiturients">Абитуриенты</a></li>
         <li><a href="/api/v1/specialities">Специальности</a></li>
-        <li th:if="${isAdmin}"><a href="/api/v1/education">Учебные заведения</a></li>
+        <li th:if="${isAdmin}"><a href="/api/v1/educations">Учебные заведения</a></li>
         <li th:if="${isAdmin}"><a href="/api/v1/users">Пользователи</a></li>
         <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
         <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
@@ -31,7 +31,7 @@
     <section class="user-list">
         <div class="table-header">
             <h2>Пользователи</h2>
-            <a href="/api/v1/users/create" class="btn btn-create">Создать</a> <!--вот тут переход на нашу registration -->
+            <a href="/registration" class="btn btn-create">Создать пользователя</a> <!--вот тут переход на нашу registration -->
         </div>
 
         <table>
@@ -39,7 +39,6 @@
             <tr>
                 <th>№</th>
                 <th>Имя пользователя</th>
-                <th>Пароль</th>
                 <th>Фамилия</th>
                 <th>Имя</th>
                 <th>Отчество</th>
@@ -48,16 +47,22 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="user, iterStat : ${auth_users}">
+            <tr th:each="user, iterStat : ${users}">
                 <td th:text="${iterStat.count}">1</td>
                 <td th:text="${user.username}">username</td>
-                <td th:text="${user.password}">password</td>
-                <td th:text="${user.last_name}">last_name</td>
-                <td th:text="${user.first_name}">first_name</td>
+                <td th:text="${user.lastName}">lastName</td>
+                <td th:text="${user.firstName}">firstName</td>
                 <td th:text="${user.patronymic}">patronymic</td>
                 <td th:text="${user.role}">role</td>
                 <td>
-                    <a th:href="@{'/api/v1/users/delete/' + ${user.id}}" class="btn btn-delete">Удалить</a>
+                    <form th:action="@{'/api/v1/users'}" method="post">
+                        <input type="hidden" name="_method" value="delete">
+                        <input type="hidden" name="id" th:value="${user.id}">
+                        <button type="submit" class="btn btn-delete"
+                                th:disabled="${user.id == authId}">
+                            Удалить
+                        </button>
+                    </form>
                 </td>
             </tr>
             </tbody>

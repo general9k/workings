@@ -5,11 +5,13 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.ksanxxx.abitur.mapper.AuthUserMapper;
 import ru.ksanxxx.abitur.model.AuthUser;
 import ru.ksanxxx.abitur.model.request.CreateClientRequest;
-import ru.ksanxxx.abitur.mapper.AuthUserMapper;
 import ru.ksanxxx.abitur.repository.AuthUserRepository;
 import ru.ksanxxx.abitur.service.AuthService;
+
+import java.util.List;
 
 
 @Service
@@ -29,5 +31,16 @@ public class AuthUserServiceImpl implements AuthService {
         authUser.setPassword(passwordEncoder.encode(authUser.getPassword()));
 
         authUserRepository.save(authUser);
+    }
+
+    @Override
+    public List<AuthUser> getUsers() {
+        return authUserRepository.findAll();
+    }
+
+    @Override
+    @Transactional
+    public void deleteUser(Integer id) {
+        authUserRepository.deleteById(id);
     }
 }

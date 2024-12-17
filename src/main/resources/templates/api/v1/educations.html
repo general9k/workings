@@ -13,7 +13,7 @@
         <li><a href="/api/v1/lists">Списки</a></li>
         <li th:if="${isAuthenticated}"><a href="/api/v1/abiturients">Абитуриенты</a></li>
         <li><a href="/api/v1/specialities">Специальности</a></li>
-        <li th:if="${isAdmin}"><a href="/api/v1/education">Учебные заведения</a></li>
+        <li th:if="${isAdmin}"><a href="/api/v1/educations">Учебные заведения</a></li>
         <li th:if="${isAdmin}"><a href="/api/v1/users">Пользователи</a></li>
         <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
         <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
@@ -45,13 +45,13 @@
             </tr>
             </thead>
             <tbody>
-            <tr th:each="edu, iterStat : ${educations}">
+            <tr th:each="education, iterStat : ${educations}">
                 <td th:text="${iterStat.count}">1</td>
-                <td th:text="${edu.name}">Название</td>
-                <td th:text="${edu.number}">123</td>
-                <td th:text="${edu.city}">Город</td>
+                <td th:text="${education.name}">Название</td>
+                <td th:text="${education.number}">123</td>
+                <td th:text="${education.city}">Город</td>
                 <td th:if="${isAdmin}">
-                    <a th:href="@{'/api/v1/education/delete/' + ${edu.id}}" class="btn btn-delete">Удалить</a>
+                    <a th:href="@{'/api/v1/education/delete/' + ${education.id}}" class="btn btn-delete">Удалить</a>
                 </td>
             </tr>
             </tbody>

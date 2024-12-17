@@ -4,6 +4,7 @@ import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Scope;
 import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -15,6 +16,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
+
+import static org.springframework.boot.BootstrapRegistry.Scope.PROTOTYPE;
 
 @Configuration
 @EnableWebSecurity
@@ -35,11 +38,11 @@ public class SecurityConfig {
                                 .loginProcessingUrl("/login")
                                 .failureUrl("/login?error=true").permitAll()
                                 .defaultSuccessUrl("/api/v1/index", true))
-
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(HttpMethod.DELETE, "/api/v1/abiturients").hasRole("ADMIN")
+                        .requestMatchers(HttpMethod.DELETE, "/api/v1/users/**").hasRole("ADMIN")
                         .requestMatchers(
-                                "/css/**", "/js/**", "/images/**",
+                                "/css/**", "/js/**", "/images/**", "/favicon.ico",
                                 "/", "/api/v1/index", "/api/v1/index/**",
                                 "/registration", "/login", "/login/error", "/error").permitAll()
                         .requestMatchers("/api/v1/**").authenticated())

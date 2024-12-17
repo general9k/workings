@@ -37,4 +37,10 @@ public interface UserControllerApi {
     )
     String getUsers(Model model);
 
+    @RequestMapping(
+            value = "api/v1/users",
+            method = RequestMethod.DELETE
+    )
+    String deleteUser(@RequestParam Integer id);
+
 }

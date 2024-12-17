@@ -8,8 +8,12 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.ksanxxx.abitur.config.AuthUserDetails;
+import ru.ksanxxx.abitur.model.AuthUser;
 import ru.ksanxxx.abitur.model.request.CreateClientRequest;
 import ru.ksanxxx.abitur.service.AuthService;
+
+import java.util.List;
 
 @Service
 @Slf4j
@@ -23,6 +27,21 @@ public class UserFacade {
         authService.save(createClientRequest);
     }
 
+    @Transactional(readOnly = true)
+    public List<AuthUser> getUsers() {
+        return authService.getUsers();
+    }
+
+    @Transactional
+    public void deleteUser(Integer id) {
+        authService.deleteUser(id);
+    }
+
+    public Integer getCurrentUserId() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        AuthUserDetails userDetails = (AuthUserDetails) authentication.getPrincipal();
+        return userDetails.getId(); // Предположим, что `AuthUserDetails` содержит ID пользователя
+    }
 
     public boolean isAuthenticated() {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();

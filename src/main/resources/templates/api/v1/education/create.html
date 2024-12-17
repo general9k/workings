@@ -13,7 +13,7 @@
         <li><a href="/api/v1/lists">Списки</a></li>
         <li th:if="${isAuthenticated}"><a href="/api/v1/abiturients">Абитуриенты</a></li>
         <li><a href="/api/v1/specialities">Специальности</a></li>
-        <li th:if="${isAdmin}"><a href="/api/v1/education">Учебные заведения</a></li>
+        <li th:if="${isAdmin}"><a href="/api/v1/educations">Учебные заведения</a></li>
         <li th:if="${isAdmin}"><a href="/api/v1/users">Пользователи</a></li>
         <li th:if="${!isAuthenticated}"><a href="/login">Войти</a></li>
         <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
