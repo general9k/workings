@@ -1,44 +1,74 @@
-/* Основные стили */
+/* Общие стили */
 body {
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
     margin: 0;
     padding: 0;
+    line-height: 1.6;
     color: #333;
+    background: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
-nav {
-    background-color: #005a87;
-    padding: 10px 20px;
+header {
+    background: linear-gradient(135deg, #005dd7, #ff8800);
+    color: #fff;
     text-align: center;
+    padding: 2rem 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
+/* Навигация */
+nav {
+    background: #454545;
+    color: #fff;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 nav ul {
-    list-style-type: none;
+    list-style: none;
     margin: 0;
     padding: 0;
+    display: flex;
+    justify-content: center;
 }
 
 nav ul li {
-    display: inline;
-    margin-right: 20px;
+    margin: 0;
 }
 
 nav ul li a {
-    color: white;
     text-decoration: none;
-    font-size: 16px;
+    color: #fff;
+    padding: 1rem 2rem;
+    display: block;
 }
 
 nav ul li a:hover {
-    text-decoration: underline;
+    background: #0078D7;
 }
 
+/* Подвал */
 footer {
+    background: #333;
+    color: #fff;
     text-align: center;
-    padding: 20px;
-    background-color: #005a87;
-    color: white;
+    padding: 1rem 0;
+    margin-top: auto;
+    border-radius: 0 0 10px 10px;
 }
 
 /* Контейнер формы */
@@ -88,8 +118,8 @@ select:focus {
 }
 
 button[type="submit"] {
-    background-color: #005a87;
-    color: white;
+    background: #0078D7;
+    color: #fff;
     padding: 10px 20px;
     border: none;
     border-radius: 4px;

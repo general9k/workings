@@ -20,10 +20,12 @@
     </ul>
 </nav>
 
+<header>
+    <h1>Редактирование абитуриента</h1>
+</header>
+
 <main>
     <section class="form-container">
-        <h1>Редактирование абитуриента</h1>
-
         <form th:action="@{/api/v1/abiturients/{id}/edit(id=${abiturient.id})}" method="post">
 
             <input type="hidden" name="_method" value="PUT"/>
