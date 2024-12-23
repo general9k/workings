@@ -4,18 +4,19 @@ html, body {
     padding: 0;
     height: 100%;
     font-family: Arial, sans-serif;
-    line-height: 3;
+    line-height: 1.6;
     color: #333;
     background: #f4f4f4;
 }
 
 .page-container {
     display: flex;
-    min-width: 50%;
+    min-width: 100%; /* Убираем ограничение по минимальной ширине */
     flex-direction: column;
     min-height: 100vh; /* Обеспечивает, что страница будет занимать всю высоту окна */
 }
 
+/* Заголовок */
 header {
     background: linear-gradient(135deg, #005dd7, #ff8800);
     color: #fff;
@@ -68,7 +69,8 @@ main {
     padding: 2rem;
     background: #fff;
     margin: 2rem auto;
-    max-width: 600px;
+    max-width: 500px; /* Увеличиваем максимальную ширину */
+    width: 100%; /* Чтобы форма занимала всю ширину родительского контейнера */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
 }
@@ -104,7 +106,7 @@ main {
     border: 1px solid #ddd;
     border-radius: 5px;
     font-size: 1rem;
-    width: 100%;
+    width: 100%; /* Устанавливаем ширину элементов формы на 100% */
 }
 
 .form-group input:focus {
