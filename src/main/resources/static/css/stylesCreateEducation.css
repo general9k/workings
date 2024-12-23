@@ -1,11 +1,36 @@
 /* Общие стили */
-body {
-    font-family: Arial, sans-serif;
+html, body {
     margin: 0;
     padding: 0;
-    line-height: 1.6;
+    height: 100%;
+    font-family: Arial, sans-serif;
+    line-height: 3;
     color: #333;
     background: #f4f4f4;
+}
+
+.page-container {
+    display: flex;
+    min-width: 50%;
+    flex-direction: column;
+    min-height: 100vh; /* Обеспечивает, что страница будет занимать всю высоту окна */
+}
+
+header {
+    background: linear-gradient(135deg, #005dd7, #ff8800);
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
 }
 
 /* Навигация */
@@ -39,6 +64,7 @@ nav ul li a:hover {
 
 /* Основная часть */
 main {
+    flex: 1; /* Заставляет main занимать всё доступное пространство */
     padding: 2rem;
     background: #fff;
     margin: 2rem auto;
@@ -128,6 +154,6 @@ footer {
     color: #fff;
     text-align: center;
     padding: 1rem 0;
-    margin-top: 2rem;
+    margin-top: auto; /* Сдвигает футер вниз */
     border-radius: 0 0 10px 10px;
 }
