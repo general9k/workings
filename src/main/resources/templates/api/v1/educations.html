@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,12 +29,11 @@
 
 <main>
     <section class="education-list">
-        <div class="table-header">
-            <h2>Учебные заведения</h2>
-            <a th:if="${isAdmin}" href="/api/v1/educations/create" class="btn btn-create">Создать</a>
+        <div class="specialties-header">
+            <a th:if="${isAdmin}" href="/api/v1/educations/create" class="create-btn">Создать учебное заведение</a>
         </div>
 
-        <table>
+        <table class="specialty-table">
             <thead>
             <tr>
                 <th>№</th>
@@ -54,7 +53,7 @@
                     <form th:action="@{/api/v1/educations}" method="post">
                         <input type="hidden" name="_method" value="delete" />
                         <input type="hidden" name="id" th:value="${education.id}" />
-                        <button type="submit" class="btn btn-delete">Удалить</button>
+                        <button type="submit" class="delete-btn">Удалить</button>
                     </form>
                 </td>
             </tr>

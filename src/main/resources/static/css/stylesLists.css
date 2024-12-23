@@ -6,6 +6,26 @@ body {
     line-height: 1.6;
     color: #333;
     background: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background: linear-gradient(135deg, #005dd7, #ff8800);
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
 }
 
 /* Навигация */
@@ -43,6 +63,7 @@ nav ul li a:hover {
 
 /* Основная часть */
 main {
+    flex: 1;
     padding: 2rem;
     background: #fff;
     margin: 2rem auto;
@@ -108,6 +129,61 @@ footer {
     color: #fff;
     text-align: center;
     padding: 1rem 0;
-    margin-top: 2rem;
+    margin-top: auto;
     border-radius: 0 0 10px 10px;
+}
+
+/* Форма фильтров */
+.filters {
+    margin-bottom: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.filters label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.filters select {
+    padding: 0.5rem;
+    font-size: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+    color: #333;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.filters select:hover {
+    border-color: #0078D7;
+    background-color: #fff;
+}
+
+.filters button {
+    background-color: #0078D7;
+    color: #fff;
+    padding: 0.6rem 1.2rem;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.filters button:hover {
+    background-color: #005bb5;
+    transform: scale(1.05);
+}
+
+.filters button:active {
+    background-color: #003f7f;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+    transform: scale(1);
 }

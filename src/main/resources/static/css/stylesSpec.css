@@ -6,6 +6,26 @@ body {
     line-height: 1.6;
     color: #333;
     background: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; /* Устанавливает минимальную высоту страницы */
+}
+
+header {
+    background: linear-gradient(135deg, #005dd7, #ff8800);
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
 }
 
 /* Навигация */
@@ -41,8 +61,8 @@ nav ul li a:hover {
     background: #0078D7;
 }
 
-/* Основная часть */
 main {
+    flex: 1; /* Позволяет занять оставшееся пространство */
     padding: 2rem;
     background: #fff;
     margin: 2rem auto;
@@ -86,7 +106,7 @@ main {
     background: #f9f9f9;
 }
 
-.specialty-table tr:hover {
+specialty-table tr:hover {
     background: #f1f1f1;
 }
 
@@ -145,12 +165,58 @@ main {
     background: #27ae60;
 }
 
-/* Подвал */
 footer {
     background: #333;
     color: #fff;
     text-align: center;
     padding: 1rem 0;
-    margin-top: 2rem;
+    margin-top: auto; /* Фиксирует футер снизу */
     border-radius: 0 0 10px 10px;
+}
+
+/* Заголовок секции с кнопкой */
+.specialties-header {
+    display: flex;
+    justify-content: flex-start; /* Кнопка слева */
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.specialties-header h1 {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 2rem;
+    margin: 0;
+    color: #0078D7;
+}
+
+.specialties-header .create-btn {
+    margin: 0;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    background: #2ecc71;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.specialties-header .create-btn:hover {
+    background: #27ae60;
+}
+
+/* Стили для кнопки удаления */
+.delete-btn {
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
 }

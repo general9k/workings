@@ -19,10 +19,16 @@
         <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
     </ul>
 </nav>
+
+<header>
+    <div class="container">
+        <h1>Конкурсные списки</h1>
+        <p>Узнайте свое место в рейтинге</p>
+    </div>
+</header>
+
 <main>
     <section class="list-section">
-        <h1>Конкурсные списки</h1>
-
         <div class="filters">
             <form method="get" th:action="@{/api/v1/lists}">
 

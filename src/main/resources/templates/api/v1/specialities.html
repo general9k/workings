@@ -19,15 +19,25 @@
         <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
     </ul>
 </nav>
+
+<header>
+    <div class="container">
+        <h1>Специальности</h1>
+        <p>Мы предлагаем широкий выбор направлений обучения, чтобы каждый мог найти свою идеальную профессию.</p>
+    </div>
+</header>
+
 <main>
     <section class="specialties-section">
-        <h1>Список специальностей</h1>
+        <div class="specialties-header">
+            <a class="create-btn" th:if="${isAdmin}" th:href="@{/api/v1/specialities/create}">Создать новую специальность</a>
+        </div>
         <table class="specialty-table">
             <thead>
             <tr>
                 <th>Название специальности</th>
                 <th>Необходимые предметы</th>
-                <th>Действия</th>
+                <th th:if="${isAdmin}">Действия</th>
             </tr>
             </thead>
             <tbody>
@@ -39,11 +49,11 @@
                         <li th:each="subject : ${specialty.subjects}" th:text="${subject.name}"></li>
                     </ul>
                 </td>
-                <td>
-                    <form th:if="${isAdmin}" th:action="@{/api/v1/specialities}" method="post" style="display:inline;">
+                <td th:if="${isAdmin}">
+                    <form th:action="@{/api/v1/specialities}" method="post" style="display:inline;">
                         <input type="hidden" name="id" th:value="${specialty.id}"/>
                         <input type="hidden" name="_method" value="DELETE"/>
-                        <button type="submit" onclick="return confirm('Вы уверены?')">Удалить</button>
+                        <button class="delete-btn" type="submit" onclick="return confirm('Вы уверены?')">Удалить</button>
                     </form>
                 </td>
             </tr>
@@ -53,11 +63,6 @@
             </tr>
             </tbody>
         </table>
-        <!-- Кнопка для создания новой специальности -->
-        <div class="new-specialty">
-            <a class="create-btn" th:if="${isAdmin}" th:href="@{/api/v1/specialities/create}">Создать новую
-                специальность</a>
-        </div>
     </section>
 </main>
 <footer>
