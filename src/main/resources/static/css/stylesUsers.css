@@ -6,6 +6,9 @@ body {
     line-height: 1.6;
     color: #333;
     background: #f4f4f4;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 nav {
@@ -54,6 +57,7 @@ header p {
 
 /* Основная часть */
 main {
+    flex: 1;
     padding: 2rem;
     max-width: 1000px;
     margin: auto;
@@ -96,41 +100,57 @@ main {
 }
 
 /* Таблица */
-table {
+.user-table {
     width: 100%;
     border-collapse: collapse;
-    background: #fff;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    border-radius: 5px;
-    overflow: hidden;
-}
-
-table th, table td {
-    padding: 1rem;
-    border: 1px solid #ddd;
+    margin: 0 auto;
+    font-size: 1rem;
     text-align: left;
 }
 
-table th {
-    background: #0078D7;
-    color: #fff;
+.user-table th,
+.user-table td {
+    padding: 0.8rem;
+    border: 1px solid #ddd;
+}
+
+.user-table th {
+    background: #f4f4f4;
+    color: #333;
+    font-weight: bold;
     text-transform: uppercase;
-    font-size: 0.9rem;
+    text-align: center;
 }
 
-table tr:nth-child(even) {
-    background-color: #f9f9f9;
+.user-table tr:nth-child(even) {
+    background: #f9f9f9;
 }
 
-table tr:hover {
-    background-color: #f1f1f1;
+.user-table tr:hover {
+    background: #f1f1f1;
+}
+
+.user-table td {
+    text-align: center;
+    color: #555;
+}
+
+.user-table ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.user-table li {
+    text-align: left;
+    margin-left: 10px;
 }
 
 /* Подвал */
 footer {
-    text-align: center;
     background: #333;
     color: #fff;
+    text-align: center;
     padding: 1rem 0;
-    margin-top: 2rem;
+    margin-top: auto;
 }
