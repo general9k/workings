@@ -19,11 +19,13 @@
         <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
     </ul>
 </nav>
-
+<header>
+    <div class="container">
+        <h1>Список абитуриентов</h1>
+    </div>
+</header>
 <main>
     <section class="applicants-filter">
-        <h1>Список абитуриентов</h1>
-
         <div class="filters">
             <form method="get" th:action="@{/api/v1/abiturients}">
 

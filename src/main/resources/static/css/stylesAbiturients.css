@@ -18,12 +18,22 @@ html, body {
     overflow-x: hidden; /* Убираем горизонтальный скролл */
 }
 
-/* Контейнер для всего содержимого */
-main {
-    flex: 1;
-    padding: 2rem;
-    max-width: 100%; /* Гарантируем, что main не выходит за пределы */
-    overflow-x: auto;
+/* Шапка */
+header {
+    background: linear-gradient(135deg, #005dd7, #ff8800);
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
 }
 
 /* Навигация */
@@ -61,7 +71,18 @@ nav ul li a:hover {
 }
 
 /* Основная часть */
-.applicants-filter h1 {
+main {
+    flex: 1;
+    padding: 2rem;
+    width: 100%;
+    margin: 2rem auto;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+}
+
+/* Заголовок секции */
+.applicants-filter h1, .specialties-section h1 {
     text-align: center;
     margin-bottom: 1.5rem;
     color: #0078D7;
@@ -93,43 +114,98 @@ nav ul li a:hover {
 }
 
 /* Таблица */
-.applicants-table {
+.applicants-table, .specialty-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 1rem;
-    table-layout: fixed; /* Фиксируем ширину колонок */
+    font-size: 1rem;
+    text-align: left;
 }
 
-.applicants-table th, .applicants-table td {
+.applicants-table th, .applicants-table td,
+.specialty-table th, .specialty-table td {
     padding: 0.8rem;
     border: 1px solid #ddd;
+}
+
+.applicants-table th, .specialty-table th {
+    background: #f4f4f4;
+    color: #333;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+}
+
+.applicants-table tr:nth-child(even), .specialty-table tr:nth-child(even) {
+    background-color: #f9f9f9;  /* Цвет для четных строк */
+}
+
+.applicants-table tr:hover, .specialty-table tr:hover {
+    background-color: #f1f1f1;  /* Цвет для строки при наведении */
+}
+
+/* Ячейки таблиц */
+.applicants-table td, .specialty-table td {
+    color: #555;  /* Цвет текста в ячейках */
+}
+
+.applicants-table td {
+    word-wrap: break-word; /* Перенос длинных слов */
+}
+
+.specialty-table td {
+    text-align: center;
+}
+
+/* Для списка внутри ячеек таблицы (специальности) */
+.specialty-table ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.specialty-table li {
     text-align: left;
-    word-wrap: break-word; /* Длинные слова переносятся */
+    margin-left: 10px;
 }
 
-.applicants-table th {
-    background-color: #0078D7;
-    color: white;
-}
-
-.applicants-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-
-.applicants-table tr:hover {
-    background-color: #f1f1f1;
-}
-
-.actions button {
+/* Кнопки действий */
+.actions button, .edit-btn, .delete-btn, .create-btn {
     padding: 0.5rem 1rem;
-    font-size: 1rem;
-    cursor: pointer;
     margin: 0.2rem;
+    font-size: 1rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
-.actions button:hover {
-    background-color: #0078D7;
+.edit-btn, .create-btn {
+    background: #0078D7;
     color: #fff;
+}
+
+.edit-btn:hover, .create-btn:hover {
+    background: #005bb5;
+}
+
+.delete-btn {
+    background: #e74c3c;
+    color: #fff;
+}
+
+.delete-btn:hover {
+    background: #c0392b;
+}
+
+.create-btn {
+    background: #2ecc71;
+    color: #fff;
+    margin-top: 1.5rem;
+}
+
+.create-btn:hover {
+    background: #27ae60;
 }
 
 /* Футер */
@@ -139,5 +215,37 @@ footer {
     text-align: center;
     padding: 1rem 0;
     margin-top: auto;
-    width: 100%; /* Растягиваем на всю ширину */
+    width: 100%;
+    border-radius: 0 0 10px 10px;
+}
+
+/* Заголовок с кнопкой */
+.specialties-header {
+    display: flex;
+    justify-content: flex-start; /* Кнопка слева */
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.specialties-header h1 {
+    flex-grow: 1;
+    text-align: center;
+    font-size: 2rem;
+    margin: 0;
+    color: #0078D7;
+}
+
+.specialties-header .create-btn {
+    margin: 0;
+    padding: 0.7rem 1.5rem;
+    font-size: 1rem;
+    background: #2ecc71;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.specialties-header .create-btn:hover {
+    background: #27ae60;
 }

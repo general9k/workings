@@ -7,6 +7,23 @@ body {
     color: #333;
 }
 
+header {
+    background: linear-gradient(135deg, #005dd7, #ff8800);
+    color: #fff;
+    text-align: center;
+    padding: 2rem 0;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 2.5rem;
+}
+
+header p {
+    font-size: 1.2rem;
+    margin-top: 0.5rem;
+}
+
 nav {
     background-color: #005a87;
     padding: 10px 20px;
