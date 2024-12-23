@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html lang="ru" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -19,16 +19,17 @@
         <li th:if="${isAuthenticated}"><a href="/logout">Выйти</a></li>
     </ul>
 </nav>
+
 <header>
     <div class="container">
         <h1>Список абитуриентов</h1>
     </div>
 </header>
+
 <main>
     <section class="applicants-filter">
         <div class="filters">
             <form method="get" th:action="@{/api/v1/abiturients}">
-
                 <label for="category">Фильтр по категории:</label>
                 <select id="category" name="categoryName">
                     <option value="" th:selected="${currentCategory == ''}">Все</option>
@@ -38,7 +39,7 @@
                             th:selected="${currentCategory == category.name}"></option>
                 </select>
 
-                <label for="category">Фильтр по наличию индивидуальных достижений:</label>
+                <label for="isAchievement">Фильтр по наличию индивидуальных достижений:</label>
                 <select id="isAchievement" name="isAchievement">
                     <option value="" th:selected="${currentIsAchievement == null}">Все</option>
                     <option value="true" th:selected="${currentIsAchievement == true}">Имеются</option>
@@ -94,13 +95,13 @@
                         <form th:if="${isEditor || isAdmin}"
                               th:action="@{/api/v1/abiturients/{id}/edit(id=${abiturient.id})}" method="get"
                               style="display:inline;">
-                            <button type="submit">Редактировать</button>
+                            <button class="edit-btn" type="submit">Редактировать</button>
                         </form>
                         <form th:if="${isAdmin}" th:action="@{/api/v1/abiturients}" method="post"
                               style="display:inline;">
                             <input type="hidden" name="id" th:value="${abiturient.id}"/>
                             <input type="hidden" name="_method" value="DELETE"/>
-                            <button type="submit" onclick="return confirm('Вы уверены?')">Удалить</button>
+                            <button class="delete-btn" type="submit" onclick="return confirm('Вы уверены?')">Удалить</button>
                         </form>
                     </div>
                 </td>
@@ -108,10 +109,10 @@
             </tbody>
         </table>
 
-        <div class="actions">
+        <div>
             <a th:if="${isOperator || isAdmin}"
                th:href="@{/api/v1/abiturients/create}"
-               class="btn">Создать абитуриента</a>
+               class="create-btn">Создать абитуриента</a>
         </div>
 
         <div class="actions">
@@ -119,7 +120,7 @@
                     onclick="window.location.href='/api/v1/abiturients/print/pdf?categoryName=' + encodeURIComponent(document.getElementById('category').value)
             + '&isAchievement=' + encodeURIComponent(document.getElementById('isAchievement').value)
             + '&sort=' + encodeURIComponent(document.getElementById('sort').value)"
-                    class="btn">
+                    class="download-pdf-btn">
                 Скачать PDF
             </button>
         </div>
