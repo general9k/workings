@@ -176,7 +176,7 @@ graph TD
 
 ---
 
-## Установка 🛠
+## Установка
 
 ### Требования 🔧
 
@@ -199,8 +199,6 @@ graph TD
 git clone https://github.com/general9k/workings
 cd workings
 ```
-
-## Установка
 
 ### 2. Настройка базы данных 🗃️
 
