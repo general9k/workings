@@ -354,3 +354,100 @@ Content-Type: application/json
   "isAchievement": true,
   "specialityId": 5
 }
+```
+
+## Разработка
+### Структура проекта
+```
+├── src/
+│   ├── main/
+│   │   ├── java/
+│   │   │   ├── ru/ksanxxx.abitur
+│   │   │   │   ├── config/
+│   │   │   │   │   ├── AuthUserDetails.java
+│   │   │   │   │   └── SecurityConfig.java
+│   │   │   │   ├── controller/
+│   │   │   │   │   ├── api/
+│   │   │   │   │   │   ├── AbiturientControllerApi.java
+│   │   │   │   │   │   ├── EducationApi.java
+│   │   │   │   │   │   ├── ListControllerApi.java
+│   │   │   │   │   │   ├── SpecialityControllerApi.java
+│   │   │   │   │   │   └── UserControllerApi.java
+│   │   │   │   ├── AbiturientController.java
+│   │   │   │   ├── EducationController.java
+│   │   │   │   ├── ListController.java
+│   │   │   │   ├── SpecialityController.java
+│   │   │   │   └── UserController.java
+│   │   │   ├── mapper/
+│   │   │   │   ├── AuthUserMapper.java
+│   │   │   ├── model/
+│   │   │   │   ├── enums/
+│   │   │   │   │   └── RoleEnum.java
+│   │   │   │   ├── request/
+│   │   │   │   │   ├── CreateAbiturientRequest.java
+│   │   │   │   │   ├── CreateClientRequest.java
+│   │   │   │   │   └── CreateSpecialityRequest.java
+│   │   │   │   ├── Abiturient.java
+│   │   │   │   ├── Achievement.java
+│   │   │   │   ├── Address.java
+│   │   │   │   ├── AuthUser.java
+│   │   │   │   ├── Category.java
+│   │   │   │   ├── Education.java
+│   │   │   │   ├── Form.java
+│   │   │   │   ├── Specialty.java
+│   │   │   │   └── Subject.java
+│   │   │   ├── repository/
+│   │   │   │   ├── AbiturientRepository.java
+│   │   │   │   ├── AchievementRepository.java
+│   │   │   │   ├── AddressRepository.java
+│   │   │   │   ├── AuthUserRepository.java
+│   │   │   │   ├── CategoryRepository.java
+│   │   │   │   ├── EducationRepository.java
+│   │   │   │   ├── FormRepository.java
+│   │   │   │   ├── SpecialtyRepository.java
+│   │   │   │   └── SubjectRepository.java
+│   │   │   └── service/
+│   │   │   │   ├── facade/
+│   │   │   │   │   │   ├── AbiturientFacade.java
+│   │   │   │   │   │   ├── AchievementFacade.java
+│   │   │   │   │   │   ├── AddressFacade.java
+│   │   │   │   │   │   ├── CategoryFacade.java
+│   │   │   │   │   │   ├── EducationFacade.java
+│   │   │   │   │   │   ├── SpecialtyFacade.java
+│   │   │   │   │   │   └── SubjectFacade.java
+│   │   │   │   │   ├── impl/
+│   │   │   │   │   │   ├── AbiturientServiceImpl.java
+│   │   │   │   │   │   ├── AchievementServiceImpl.java
+│   │   │   │   │   │   ├── AddressServiceImpl.java
+│   │   │   │   │   │   ├── AuthUserDetailsServiceImpl.java
+│   │   │   │   │   │   ├── AuthUserServiceImpl.java
+│   │   │   │   │   │   ├── CategoryServiceImpl.java
+│   │   │   │   │   │   ├── EducationServiceImpl.java
+│   │   │   │   │   │   ├── SpecialtyServiceImpl.java
+│   │   │   │   │   │   └── SubjectServiceImpl.java
+│   │   │   │   │   ├── AbiturientService.java
+│   │   │   │   │   ├── AchievementService.java
+│   │   │   │   │   ├── AddressService.java
+│   │   │   │   │   ├── AuthUserService.java
+│   │   │   │   │   ├── CategoryService.java
+│   │   │   │   │   ├── EducationService.java
+│   │   │   │   │   ├── SpecialtyService.java
+│   │   │   │   │   └── SubjectService.java
+│   │   │   │   └── util/
+│   │   │   │       ├── exception/
+│   │   │   │       │   ├── CoreException.java
+│   │   │   │       │   ├── CoreExceptionAdvice.java
+│   │   │   │       │   ├── ServerError.java
+│   │   │   │       │   ├── ServerLogicException.java
+│   │   │   │       │   └── ServerLogicExceptionType.java
+│   │   │   │       ├── interfaceEnum/
+│   │   │   │       │   └── UniversalEnumConverter.java
+│   │   │   │       └── RoleConverter.java
+│   │   └── resources # Ресурсы проекта
+│   │       ├── db.changelog # Миграции данных
+│   │       ├── application.yml # Конфигурация проекта
+│   │       ├── static # Стили Frontend
+│   │       └── templates # Странички Fronted
+│   └── test
+└── pom.xml
+```
