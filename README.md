@@ -433,16 +433,16 @@ Content-Type: application/json
 │   │   │   │   │   ├── EducationService.java
 │   │   │   │   │   ├── SpecialtyService.java
 │   │   │   │   │   └── SubjectService.java
-│   │   │   │   └── util/
-│   │   │   │       ├── exception/
-│   │   │   │       │   ├── CoreException.java
-│   │   │   │       │   ├── CoreExceptionAdvice.java
-│   │   │   │       │   ├── ServerError.java
-│   │   │   │       │   ├── ServerLogicException.java
-│   │   │   │       │   └── ServerLogicExceptionType.java
-│   │   │   │       ├── interfaceEnum/
-│   │   │   │       │   └── UniversalEnumConverter.java
-│   │   │   │       └── RoleConverter.java
+│   │   │   └── util/
+│   │   │       ├── exception/
+│   │   │       │   ├── CoreException.java
+│   │   │       │   ├── CoreExceptionAdvice.java
+│   │   │       │   ├── ServerError.java
+│   │   │       │   ├── ServerLogicException.java
+│   │   │       │   └── ServerLogicExceptionType.java
+│   │   │       ├── interfaceEnum/
+│   │   │       │   └── UniversalEnumConverter.java
+│   │   │       └── RoleConverter.java
 │   │   └── resources # Ресурсы проекта
 │   │       ├── db.changelog # Миграции данных
 │   │       ├── application.yml # Конфигурация проекта
